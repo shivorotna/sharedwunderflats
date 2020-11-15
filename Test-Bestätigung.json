@@ -1,0 +1,250 @@
+{
+  "wizard": [
+    {
+      "properties": [
+        {
+          "name": "mieter",
+          "label": "Mieter",
+          "type": "person",
+          "properties": [
+            {
+              "name": "first_name",
+              "label": "Vorname",
+              "type": "text",
+              "required": true,
+              "inline": true,
+              "warnings": [],
+              "errors": []
+            },
+            {
+              "name": "last_name",
+              "label": "Nachname",
+              "type": "text",
+              "required": true,
+              "inline": true,
+              "warnings": [],
+              "errors": []
+            },
+            {
+              "name": "company",
+              "label": "Unternehmen",
+              "type": "text",
+              "required": false,
+              "inline": true,
+              "warnings": [],
+              "errors": []
+            },
+            {
+              "name": "email",
+              "label": "E-Mail",
+              "type": "email",
+              "required": false,
+              "inline": true,
+              "warnings": [],
+              "errors": []
+            },
+            {
+              "name": "tel",
+              "label": "Telefon",
+              "type": "tel",
+              "required": false,
+              "inline": true,
+              "warnings": [],
+              "errors": []
+            },
+            {
+              "name": "address",
+              "label": "Adresse",
+              "type": "address",
+              "required": false,
+              "inline": false,
+              "warnings": [],
+              "errors": []
+            }
+          ],
+          "warnings": [],
+          "errors": []
+        },
+        {
+          "name": "vermieter",
+          "label": "Vermieter",
+          "type": "person",
+          "properties": [
+            {
+              "name": "first_name",
+              "label": "Vorname",
+              "type": "text",
+              "required": true,
+              "inline": true,
+              "warnings": [],
+              "errors": []
+            },
+            {
+              "name": "last_name",
+              "label": "Nachname",
+              "type": "text",
+              "required": true,
+              "inline": true,
+              "warnings": [],
+              "errors": []
+            },
+            {
+              "name": "company",
+              "label": "Unternehmen",
+              "type": "text",
+              "required": false,
+              "inline": true,
+              "warnings": [],
+              "errors": [],
+              "rows": 1
+            },
+            {
+              "name": "email",
+              "label": "E-Mail",
+              "type": "email",
+              "required": false,
+              "inline": true,
+              "warnings": [],
+              "errors": []
+            },
+            {
+              "name": "tel",
+              "label": "Telefon",
+              "type": "tel",
+              "required": false,
+              "inline": true,
+              "warnings": [],
+              "errors": []
+            },
+            {
+              "name": "address",
+              "label": "Adresse",
+              "type": "address",
+              "required": false,
+              "inline": false,
+              "warnings": [],
+              "errors": []
+            },
+            {
+              "name": "geschaeftsadresse",
+              "label": "Geschäftsadresse",
+              "type": "address",
+              "required": true,
+              "inline": false,
+              "warnings": [],
+              "errors": []
+            }
+          ],
+          "warnings": [],
+          "errors": []
+        }
+      ],
+      "name": "",
+      "label": "",
+      "if": "",
+      "hint": "",
+      "min": "",
+      "default": ""
+    },
+    {
+      "properties": [
+        {
+          "name": "wohnung",
+          "label": "Wohnung",
+          "type": "object",
+          "properties": [
+            {
+              "name": "etage",
+              "label": "Etage",
+              "type": "text",
+              "required": false,
+              "inline": false,
+              "warnings": [],
+              "errors": [],
+              "rows": 1,
+              "default": "",
+              "unit": ""
+            },
+            {
+              "name": "einzugsdatum",
+              "label": "Einzugsdatum",
+              "type": "date",
+              "required": false,
+              "inline": false,
+              "warnings": [],
+              "errors": []
+            },
+            {
+              "name": "zimmer",
+              "label": "Anzahl der Zimmer",
+              "type": "number",
+              "required": false,
+              "inline": false,
+              "warnings": [],
+              "errors": [],
+              "collapsehint": true,
+              "hint": "Anzahl der Zimmer in der Wohnung",
+              "unit": "",
+              "min": "1",
+              "default": "1"
+            },
+            {
+              "name": "renovierte_wohnung",
+              "label": "Wurde die Wohnung renoviert?",
+              "type": "choice",
+              "required": false,
+              "inline": false,
+              "warnings": [],
+              "errors": [],
+              "options": [
+                {
+                  "label": "Ja",
+                  "value": "true"
+                },
+                {
+                  "label": "Nein",
+                  "value": "false"
+                }
+              ],
+              "if": "",
+              "hint": "Eingabee, ob die Wohnung zur Übergabe renoviert wurde",
+              "min": "",
+              "default": ""
+            },
+            {
+              "name": "renovierungsdatum",
+              "label": "Datum der letzten Renovierung",
+              "type": "date",
+              "required": false,
+              "inline": false,
+              "warnings": [],
+              "errors": [],
+              "if": "wohnung.renovierte_wohnung == 'true'",
+              "hint": ""
+            },
+            {
+              "name": "wohnungszustand",
+              "label": "Wohnungszustand",
+              "type": "rating",
+              "required": false,
+              "inline": false,
+              "warnings": [],
+              "errors": [],
+              "if": "",
+              "displaymode": "emoji"
+            }
+          ],
+          "warnings": [],
+          "errors": [],
+          "unit": "",
+          "default": ""
+        }
+      ]
+    }
+  ],
+  "script": "",
+  "output": "{% macro contactDetails(persons = []) %}\n  {% for person in persons %}\n\n\n    {% if person.lessor_type == 'legalEntity' %}\n\n      Bezeichnung : {{person.legal_entity_name}}\n\n      <br/>\n      Juritische Person\n      <br/>\n      Vertreten durch : {{person.first_name}} {{person.last_name}}\n\n      {% if person.address -%}\n        <br/>\n        Hauptsitz : {{person.address.formatted_address}}\n      {%- endif %}\n    \n\n    {% else %}\n\n      Name : {{person.first_name}} {{person.last_name}}\n      {% if person.address -%}\n        <br/>\n        Wohnsitz : {{person.address.formatted_address}}\n      {%- endif %}\n      {% if person.geschaeftsadresse -%}\n        <br/>\n        Geschäftsadresse : {{person.geschaeftsadresse.formatted_address}}\n      {%- endif %}\n\n    {% endif %}\n\n    {% if person.email -%}\n      <br/>\n      E-mail : {{person.email}}\n    {%- endif %}\n\n    {% if person.tel -%}\n      <br/>\n      Tel. : {{person.tel}}\n    {%- endif %}\n\n    {% if loop.last == false %}\n      <br/><br/>und<br/><br/>\n    {% endif %}\n\n  {%- endfor -%}\n{%- endmacro %}\n\n<style>\n  .subheader{\n    margin: 0 auto;\n    width: 70%;\n    text-align: center;\n  }\n</style>\n\n\n<p>\n<img src=\"https://www.settle-in-berlin.com/wp-content/uploads/2016/04/wunderflats-logo.png\" alt=\"Girl in a jacket\" width=\"315\" height=\"210\" align=\"middle\"/>\n</p>\n\n<div class=\"subheader\">\n<p>\n    TYP :\n    TEST-BESTÄTIGUNG\n </p>\n</div>\n\n\n<h2>Vetragsparteien</h2>\n\n<h3>\n    Vermieter\n</h3>\n<p>\n  {{ contactDetails([vermieter]) }}\n</p>\n\n<h3>\n\tMieter\n</h3>\n<p>\n  {{ contactDetails([mieter])}}\n</p>\n\n<h2>Details zur Wohnung</h2>\n\n<p>\nEtage der Wohnung: {{wohnung.etage}} \n</p>\n<p>\nEinzug in die Wohnung: {{wohnung.einzugsdatum | date(\"LL\")}} \n</p>\n<p>\nAnzahl der Zimmer: {{wohnung.zimmer}} \n</p>\n\n{% if wohnung.renovierte_wohnung == \"true\" and wohnung.renovierungsdatum != null  -%}\n  <p>Datum der letzten Renovierung: {{wohnung.renovierungsdatum | date(\"LL\")}}  </p>\n  \n{% endif %}\n\n<p>\nWohnungszustand:\n {% if wohnung.wohnungszustand == 5 %}    Ausgezeichnet\n {% elif wohnung.wohnungszustand == 4 %}  Gut\n {% elif wohnung.wohnungszustand == 3 %}  Normal\n {% elif wohnung.wohnungszustand == 2 %}  Schlecht\n {% elif wohnung.wohnungszustand == 1 %}  Sehr schlecht\n {% endif %}\n</p>\n<br /><br /><br />\n\n<p> _____________________________________________ am _________________ ,</p>\n\n<p>Unterschriften :</p>\n\n<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />",
+  "name": "Test-Bestätigung",
+  "category": "Neue Kategorie",
+  "purpose": "Meine Erste Test-Vorlage"
+}

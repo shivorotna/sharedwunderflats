@@ -1,0 +1,708 @@
+{
+  "wizard": [
+    {
+      "properties": [
+        {
+          "name": "housing",
+          "label": "Mietobjekt",
+          "type": "object",
+          "properties": [
+            {
+              "name": "building_type",
+              "label": "Typ",
+              "type": "choice",
+              "required": true,
+              "inline": false,
+              "warnings": [],
+              "errors": [],
+              "options": [
+                {
+                  "label": "Wohnung",
+                  "value": "flat"
+                },
+                {
+                  "label": "Haus",
+                  "value": "house"
+                }
+              ]
+            },
+            {
+              "name": "floor_location",
+              "label": "Etage",
+              "type": "choice",
+              "required": true,
+              "inline": false,
+              "warnings": [],
+              "errors": [],
+              "options": [
+                {
+                  "label": "Erdgeschoss",
+                  "value": "ground_floor"
+                },
+                {
+                  "label": "OG",
+                  "value": "middle_floor"
+                },
+                {
+                  "label": "Dachgeschoss",
+                  "value": "tope_floor"
+                }
+              ],
+              "if": "housing.building_type=='flat'"
+            }
+          ],
+          "warnings": [],
+          "errors": []
+        },
+        {
+          "name": "floor_number",
+          "label": "Etagennummer",
+          "type": "number",
+          "required": false,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "step": "1",
+          "min": "1",
+          "if": "housing.floor_location=='middle_floor'"
+        },
+        {
+          "name": "address",
+          "label": "Adresse",
+          "type": "address",
+          "required": true,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "step": "",
+          "min": "",
+          "if": ""
+        },
+        {
+          "name": "number_of_rooms",
+          "label": "Anzahl der Zimmer",
+          "type": "number",
+          "required": true,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "step": "0.5",
+          "min": "1"
+        },
+        {
+          "name": "living_area",
+          "label": "Größe",
+          "type": "number",
+          "required": true,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "unit": "m²",
+          "step": "0.5",
+          "min": ""
+        },
+        {
+          "name": "lessors",
+          "label": "Vermiter",
+          "type": "array",
+          "items": {
+            "type": "person",
+            "properties": [
+              {
+                "name": "first_name",
+                "label": "Vorname",
+                "type": "text",
+                "required": true,
+                "inline": true,
+                "warnings": [],
+                "errors": []
+              },
+              {
+                "name": "last_name",
+                "label": "Nachname",
+                "type": "text",
+                "required": true,
+                "inline": true,
+                "warnings": [],
+                "errors": []
+              },
+              {
+                "name": "company",
+                "label": "Unternehmen",
+                "type": "text",
+                "required": false,
+                "inline": true,
+                "warnings": [],
+                "errors": []
+              },
+              {
+                "name": "email",
+                "label": "E-Mail",
+                "type": "email",
+                "required": false,
+                "inline": true,
+                "warnings": [],
+                "errors": []
+              },
+              {
+                "name": "tel",
+                "label": "Telefon",
+                "type": "tel",
+                "required": false,
+                "inline": true,
+                "warnings": [],
+                "errors": []
+              },
+              {
+                "name": "address",
+                "label": "Adresse",
+                "type": "address",
+                "required": false,
+                "inline": false,
+                "warnings": [],
+                "errors": []
+              },
+              {
+                "name": "bank",
+                "label": "Kreditinstitut",
+                "type": "text",
+                "required": false,
+                "inline": false,
+                "warnings": [],
+                "errors": [],
+                "items": {
+                  "label": "Ohne Titel"
+                },
+                "min": "",
+                "rows": 1
+              },
+              {
+                "name": "iban",
+                "label": "IBAN",
+                "type": "text",
+                "required": false,
+                "inline": true,
+                "warnings": [],
+                "errors": []
+              },
+              {
+                "name": "bic",
+                "label": "BIC",
+                "type": "text",
+                "required": false,
+                "inline": true,
+                "warnings": [],
+                "errors": []
+              }
+            ],
+            "label": "Vermieter"
+          },
+          "warnings": [],
+          "errors": [],
+          "min": "1"
+        },
+        {
+          "name": "tenants",
+          "label": "Mieter",
+          "type": "array",
+          "items": {
+            "type": "person",
+            "properties": [
+              {
+                "name": "first_name",
+                "label": "Vorname",
+                "type": "text",
+                "required": true,
+                "inline": true,
+                "warnings": [],
+                "errors": []
+              },
+              {
+                "name": "last_name",
+                "label": "Nachname",
+                "type": "text",
+                "required": true,
+                "inline": true,
+                "warnings": [],
+                "errors": []
+              },
+              {
+                "name": "company",
+                "label": "Unternehmen",
+                "type": "text",
+                "required": false,
+                "inline": true,
+                "warnings": [],
+                "errors": []
+              },
+              {
+                "name": "email",
+                "label": "E-Mail",
+                "type": "email",
+                "required": false,
+                "inline": true,
+                "warnings": [],
+                "errors": []
+              },
+              {
+                "name": "tel",
+                "label": "Telefon",
+                "type": "tel",
+                "required": false,
+                "inline": true,
+                "warnings": [],
+                "errors": []
+              },
+              {
+                "name": "address",
+                "label": "Adresse",
+                "type": "address",
+                "required": false,
+                "inline": false,
+                "warnings": [],
+                "errors": []
+              }
+            ],
+            "label": "Mieter"
+          },
+          "warnings": [],
+          "errors": [],
+          "min": "1"
+        }
+      ],
+      "name": "",
+      "label": "",
+      "step": "",
+      "min": "",
+      "if": "",
+      "unit": ""
+    },
+    {
+      "properties": [
+        {
+          "name": "effective_at",
+          "label": "Start des Mietverhältnisses",
+          "type": "date",
+          "required": true,
+          "inline": false,
+          "warnings": [],
+          "errors": []
+        },
+        {
+          "name": "contract_effective_at",
+          "label": "Datum des Vertragsabschlusses",
+          "type": "date",
+          "required": true,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "unit": "",
+          "step": ""
+        },
+        {
+          "name": "is_fixed_term",
+          "label": "Handelt es sich um einen befristeten Mietvertrag?",
+          "type": "choice",
+          "required": true,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "options": [
+            {
+              "label": "Befristet",
+              "value": "true"
+            },
+            {
+              "label": "Unbefristet",
+              "value": "false"
+            }
+          ],
+          "hint": "",
+          "if": ""
+        },
+        {
+          "name": "fixed_term_reason",
+          "label": "Grund der Befristung",
+          "type": "choice",
+          "required": true,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "options": [
+            {
+              "label": "Eigenbedarf nach Ablauf der Befristung",
+              "value": "own_usage"
+            },
+            {
+              "label": "Wesentliche bauliche Insandsetzungen nach Ablauf der Mietzeit",
+              "value": "renovation"
+            },
+            {
+              "label": "Vermietung an Dienstverpflichtete",
+              "value": "duty"
+            }
+          ],
+          "collapsehint": true,
+          "hint": "Nach Inkrafttreten des Mietrechtsänderungsgesetztes kann ein befristeter Mietvertrag auf bestimmte Zeit\n        im Mietrecht nur noch dann eingegangen werden, wenn der Vermieter bestimmte Befristungsgründe hat.",
+          "if": "is_fixed_term=='true'",
+          "displaymode": "vertical"
+        },
+        {
+          "name": "fixed_term_date",
+          "label": "Vertrag befristet zum",
+          "type": "date",
+          "required": false,
+          "inline": false,
+          "warnings": [],
+          "errors": [
+            {
+              "if": "fixed_term_date < effective_at",
+              "text": "Die Befristung des Vertrages ist erst nach dem Inkraftreten möglich"
+            }
+          ],
+          "hint": "",
+          "if": "is_fixed_term=='true'"
+        }
+      ]
+    },
+    {
+      "properties": [
+        {
+          "name": "net_cold_rent",
+          "label": "Miete",
+          "type": "number",
+          "required": true,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "collapsehint": true,
+          "hint": "Tragen Sie die Höhe der Nettokaltmiete ein",
+          "unit": "€",
+          "step": "0.01",
+          "min": "1",
+          "if": ""
+        },
+        {
+          "name": "water_heating",
+          "label": "Warmwasser und Heizung",
+          "type": "number",
+          "required": true,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "collapsehint": true,
+          "hint": "Tragen Sie die Höhe der Vorauszahlung ein",
+          "unit": "€",
+          "step": "",
+          "min": ""
+        },
+        {
+          "name": "operatig_expense",
+          "label": "Betriebskosten",
+          "type": "number",
+          "required": true,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "collapsehint": true,
+          "hint": "Wie z.B. Wasserversorgung, Entwässerung, Müllabfuhr etc.",
+          "unit": "€",
+          "step": "0.01",
+          "min": "1"
+        }
+      ]
+    },
+    {
+      "properties": [
+        {
+          "name": "basement_available",
+          "label": "Keller vorhanden?",
+          "type": "choice",
+          "required": true,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "options": [
+            {
+              "label": "Ja",
+              "value": "true"
+            },
+            {
+              "label": "Nein",
+              "value": "false"
+            }
+          ],
+          "hint": "",
+          "unit": "",
+          "step": "",
+          "min": ""
+        },
+        {
+          "name": "attic_available",
+          "label": "Dachboden vorhanden?",
+          "type": "choice",
+          "required": true,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "options": [
+            {
+              "label": "Ja",
+              "value": "true"
+            },
+            {
+              "label": "Nein",
+              "value": "false"
+            }
+          ]
+        },
+        {
+          "name": "toilette_available",
+          "label": "Separates WC vorhanden?",
+          "type": "choice",
+          "required": true,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "options": [
+            {
+              "label": "Ja",
+              "value": "true"
+            },
+            {
+              "label": "Nein",
+              "value": "false"
+            }
+          ]
+        },
+        {
+          "name": "garden_available",
+          "label": "Garten vorhanden?",
+          "type": "choice",
+          "required": true,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "options": [
+            {
+              "label": "Ja",
+              "value": "true"
+            },
+            {
+              "label": "Nein",
+              "value": "false"
+            }
+          ],
+          "if": ""
+        },
+        {
+          "name": "garden_exclusive_usage",
+          "label": "Der Garten ist dem Mieter zur alleinigen Nutzung überlassen?",
+          "type": "choice",
+          "required": true,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "options": [
+            {
+              "label": "Ja",
+              "value": "true"
+            },
+            {
+              "label": "Nein",
+              "value": "nein"
+            }
+          ],
+          "if": "garden_available=='true'"
+        }
+      ]
+    },
+    {
+      "properties": [
+        {
+          "name": "rentdeposit",
+          "label": "Mietsicherheit",
+          "type": "choice",
+          "required": false,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "options": [
+            {
+              "label": "Kaution",
+              "value": "money_deposit"
+            },
+            {
+              "label": "Mietbürgschaft",
+              "value": "rental_guarantee"
+            }
+          ]
+        },
+        {
+          "name": "rent_deposit_amount",
+          "label": "Tragen Sie den Kautionsbetrag ein",
+          "type": "number",
+          "required": false,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "collapsehint": true,
+          "hint": "Maximal 3 Monatsmieten sind gesetzlich zulässig.",
+          "if": "rentdeposit=='money_deposit'",
+          "unit": "€",
+          "step": "0.01"
+        },
+        {
+          "name": "guarantor",
+          "label": "Bürger",
+          "type": "person",
+          "properties": [
+            {
+              "name": "first_name",
+              "label": "Vorname",
+              "type": "text",
+              "required": true,
+              "inline": true,
+              "warnings": [],
+              "errors": []
+            },
+            {
+              "name": "last_name",
+              "label": "Nachname",
+              "type": "text",
+              "required": true,
+              "inline": true,
+              "warnings": [],
+              "errors": []
+            },
+            {
+              "name": "company",
+              "label": "Unternehmen",
+              "type": "text",
+              "required": false,
+              "inline": true,
+              "warnings": [],
+              "errors": []
+            },
+            {
+              "name": "email",
+              "label": "E-Mail",
+              "type": "email",
+              "required": false,
+              "inline": true,
+              "warnings": [],
+              "errors": []
+            },
+            {
+              "name": "tel",
+              "label": "Telefon",
+              "type": "tel",
+              "required": false,
+              "inline": true,
+              "warnings": [],
+              "errors": []
+            },
+            {
+              "name": "address",
+              "label": "Adresse",
+              "type": "address",
+              "required": false,
+              "inline": false,
+              "warnings": [],
+              "errors": []
+            }
+          ],
+          "warnings": [],
+          "errors": [],
+          "hint": "",
+          "if": "rentdeposit=='rental_guarantee'",
+          "unit": "",
+          "step": ""
+        }
+      ]
+    },
+    {
+      "properties": [
+        {
+          "name": "parking_available",
+          "label": "Gehört eine Garage/ein Stellplatz zur Mietwohnung?",
+          "type": "choice",
+          "required": false,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "options": [
+            {
+              "label": "Ja",
+              "value": "true"
+            },
+            {
+              "label": "Nein",
+              "value": "false"
+            }
+          ],
+          "collapsehint": true,
+          "hint": "Einstellplatz kann als Bestandteil dieses Vertrages vermietet werden. Alternativ kann ein separater Vertrag abgeshclossen werden, um mögliche Kündigung oder eine Mieterhöhung gesondert durchzuführen."
+        },
+        {
+          "name": "parking_type",
+          "label": "Typ des Einstellplatzes",
+          "type": "choice",
+          "required": false,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "options": [
+            {
+              "label": "Tiefgaragenstellplatz",
+              "value": "undergroundParkingSpace"
+            },
+            {
+              "label": "Garage",
+              "value": "garage"
+            },
+            {
+              "label": "Stellplatz",
+              "value": "parkingSpace"
+            }
+          ],
+          "hint": "",
+          "if": "parking_available=='true'"
+        },
+        {
+          "name": "parking_rent",
+          "label": "Einstellplatz-Miete",
+          "type": "number",
+          "required": false,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "unit": "€",
+          "step": "0.01",
+          "if": "parking_available=='true'",
+          "hint": ""
+        },
+        {
+          "name": "additional_negiations",
+          "label": "Sonstige Vereinbarungen",
+          "type": "text",
+          "required": false,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "collapsehint": true,
+          "hint": "Tragen Sie (optional) individuell ausgehandelte Zusatzvereinbarungen wie z.B. Kleinreparaturen, Endrenovierungszusatz, Begrenzung zur Untermiete ein",
+          "rows": 5
+        }
+      ],
+      "name": "",
+      "label": "",
+      "if": ""
+    }
+  ],
+  "script": "",
+  "output": "{% macro contactDetails(persons = []) %}\n  {% for person in persons %}\n\n\n    {% if person.lessor_type == 'legalEntity' %}\n\n      Bezeichnung : {{person.legal_entity_name}}\n\n      <br/>\n      Juritische Person\n      <br/>\n      Vertreten durch : {{person.first_name}} {{person.last_name}}\n\n      {% if person.address -%}\n        <br/>\n        Hauptsitz : {{person.address.formatted_address}}\n      {%- endif %}\n\n    {% else %}\n\n      Name : {{person.first_name}} {{person.last_name}}\n      {% if person.address -%}\n        <br/>\n        Wohnsitz : {{person.address.formatted_address}}\n      {%- endif %}\n\n    {% endif %}\n\n    {% if person.email -%}\n      <br/>\n      E-mail : {{person.email}}\n    {%- endif %}\n\n    {% if person.tel -%}\n      <br/>\n      Tel. : {{person.tel}}\n    {%- endif %}\n\n    {% if loop.last == false %}\n      <br/><br/>und<br/><br/>\n    {% endif %}\n\n  {%- endfor -%}\n{%- endmacro %}\n\n<style>\n  .subheader{\n    margin: 0 auto;\n    width: 70%;\n    text-align: center;\n  }\n</style>\n\n{# =============================================================================\n============================================================================= #}\n<h1>Mietvertrag<h1>\n\n\n<h2>Vertragspartner</h2>\n<div class=\"comment\">\n<p>\n(Unter Vermieter und Mieter werden im Folgenden die Vertragspartner auch dann verstanden, wenn sie\naus mehreren Personen bestehen.)\n</p>\n</div>\n<h3>\nVermieter\n</h3>\n<p>\n  {{ contactDetails(lessors) }}\n</p>\n<h3>\nMieter\n</h3>\n<p>\n  {{ contactDetails(tenants) }}\n</p>\n<br/>\n<p>\nschließen folgenden Mietvertrag\n</p>\n<h2>Mieträume</h2>\n<ol>\n<li>\n<p>\n{% if housing.building_type=='flat' %}\nDie Wohnung (weiter als Mietsache genannt) im Hause {{address.formatted_address}} im\n{% if housing.floor_location=='ground_floor' %}\n      Erdgeschoss.\n    {% elif housing.floor_location=='top_floor'  %}\n      Dachgeschoss.\n    {% else %}\n      {{floor_number}}. OG.\n    {% endif %} wird vermietet.\n{% else %}\n{# //building_type=='house' #}\n{# TODO #}\nHiermit wird\n{% if house_type == 'detached_house'%}\nDas Einfamilienhaus\n{% elif house_type == 'semi_detached_house'%}\nDie Doppelhaushälfte\n{% elif house_type == 'raw_house'%}\nDas Reihenhaus\n{% endif %}\n(weiter als Mietsache genannt) unter Adresse {{address.formatted_address}} vermietet.\n{% endif %}\n\nDie Mietsache besteht aus {{number_of_rooms}} Zimmern,\n{% if bathroom_available %}\nBad,\n{% endif %}\n{% if toilette_available %}\nWC,\n{% endif %}\n{% if basement_available %}\nKeller,\n{% endif %}\n{% if attic_available %}\nDachboden,\n{% endif %}\n{% if garden_available %}\nGarten,\n{% endif %} Küche und Flur.\n{% if parking_available %}\nIn diesem Vertrag ist\n{% if parking_type=='undergroundParkingSpace' %}\nein Tiefgaragenstellplatz\n{% elif parking_type=='parkingSpace'  %}\nein Stellplatz\n{% elif parking_type=='garage'  %}\neine Garage\n{% endif %}\n{% if parking_number %}\nmit der Nummer {{parking_number}}\n{% endif %} mit vermietet.\n{% else %} Garage/Stellplatz sind in diesem Vertrag nicht mit vermietet.\n{% endif %}\nDie Wohnfläche beträgt {{living_area}} m².\n</li>\n{% if waschkitchen_available %}\n{# //optionaler Absatz für die Waschküche #}\n\n<li>\nDer Mieter ist berechtigt, Waschküche nach Maßgabe der Hausordnung oder der besonderen Benutzungsordnung mitzubenutzen.\n</li>\n{% endif %}\n<li>\nDer Vermieter ist verpflichtet bei der Beschaffung nachweislich erforderlicher Schlüssel mitzuwirken. Die\nKosten für die Schlüssel trägt der Mieter.\n</li>\n<li>\nDer Mieter übernimmt die Mietsache im gegenwärtigen Zustand.\n</li>\n</ol>\n\n<h2>Mietzeit</h2>\nDas Mietverhältnis beginnt am {{effective_at | date(\"LL\")}}.\n<ol>\n{% if is_fixed_term==\"true\" and fixed_term_date!=null %}\n{# //Abhangig von der Befristung #}\n<li>\nDas Mitverhältnis läuft auf bestimmte Zeit und endet am  {{fixed_term_date | date(\"LL\")}}‚\nohne dass es einer Kündigung bedarf, nur wenn\n</li>\n<ol>\n<li>\n    der Vermieter die Räume für sich, seine Familienangehörigen oder Angehörige seines Haushalts nutzen will\n    oder\n</li>\n<li>\n    in zulässiger Weise die Räume beseitigen oder so wesentlich verändern oder instand setzen will, dass die\n    Maßnahmen durch eine Fortsetzung des Mietverhältnisses erheblich erschwert würden, oder\n  </li>\n  <li>\n    die Räume an einen zur Dienstleistung Verpflichteten vermieten will.\n</li>\n</ol>\n<br/>\nGrund der Befristung ist:\n{% if fixed_term_reason == 'own_usage' %}\nEigenbedarf nach Ablauf der Befristung\n{% elif fixed_term_reason == 'renovation' %}\nWesentliche bauliche Insandsetzungen nach Ablauf der Mietzeit\n{% elif fixed_term_reason == 'duty' %}\nVermietung an Dienstverpflichtete\n{% endif %}\nDer Mieter kann vom Vermieter frühestens vier Monate vor Ablauf der Befristung verlangen, dass dieser\nihm binnen eines Monats mitteilt, ob der Befristungsgrund noch besteht. Erfolgt die Mitteilung später,\nso kann der Mieter eine Verlängerung des Mietverhältnisses um den Zeitraum der Verspätung verlangen.\nTritt der Grund der Befristung erst später ein, so kann der Mieter eine Verlängerung des Mietverhältnisses\num einen entsprechenden Zeitraum verlangen. Entfällt der Grund, so kann der Mieter eine Verlängerung auf\nunbestimmte Zeit verlangen.\n\n\n{% else %} {# Unbefristeter Vertrag #}\n<li>\nDas Mietverhältnis läuft auf unbestimmte Zeit und endet zum Ablauf des Monats, zu dem der Vermieter\noder der Mieter die Kündigung unter Einhaltung einer Frist von 3 Monaten ausspricht.\nFür den Vermieter verlängert sich die Kündigungsfrist auf 6 Monate, wenn seit der Überlassung\ndes Wohnraums mehr als 5 Jahre verstrichen sind, auf 9 Monate, wenn seit der Überlassung des Wohnraums\nmehr als 8 Jahre verstrichen sind.\n\n{% if (min_rent_duration > 0) and minTerminable_at  %}\n{# //If the min duration of the contract is set #}\nDie ordentliche Kündigung ist jedoch für beide Parteien frühestens zum {{minTerminable_at | date(\"LL\")}} zulässig.\nDie Möglichkeit zur außerordentlichen Kündigung bleibt unberührt.\n<div class=\"comment\">\n(Die ordentliche Kündigung kann höchstens für den Zeitraum von 4 Jahren ausgeschlossen werden. Maßgebend\nfür die Berechnung der Frist ist das Datum des Vertragsabschlusses und nicht der Mietbeginn.)\n</div>\n{% endif %}\nFür die Rechzeitigkeit der Kündigung kommt es auf den Zugang des Kündigungsschreibens an.\nDie Kündigung des Mietverhältnisses bedarf der schriftlichen Form. Erfolgt die Kündigung bis zum\n3. Werktag des Kalendermonats, wird dieser Monat auf die Kündigungsfrist angerechnet. Hinsichtlich des\nKündigungsrechts des Vermieters gelten im Übrigen die gesetzlichen Bestimmungen.\n{% endif %}\n</li>\n<li>\nSetzt der Mieter den Gebrauch der Mietsache nach Ablauf der Mietzeit fort, so gilt das Mietvwerhältnis\nnicht als verlängert. §545 BGE findet somit keine Anwendung. Fortsetzung oder Erneuerung des Mietverhältnisses\nnach seinem Ablauf  müssen vereinbart werden.\n</li>\n</ol>\n</p>\n\n<h2>\nAußerordentliches Kündigungsrecht\n</h2>\n<p>\nHinsichtlich des außerordentlichen Kündigungsrechts des Vermieters und Mieters gelten die gesetzlichen\nBestimmungen.\n</p>\n\n<h2>\nMiete\n</h2>\n<p>\nHinsichtlich des außerordentlichen Kündigungsrechts des Vermieters und Mieters gelten die gesetzlichen\nBestimmungen.\n</p>\n<p>\n<ul>\n<li>\nDer Mieter zahlt dem Vermieter monatlich als Nettomiete: {{net_cold_rent | currency(\"EUR\")}}\n</li>\n<li>\nals angemessene Vorauszahlung für Betriebskosten i.5.v. §2 Betriebskostenverordnung (BetrKW): {{operatig_expense | currency(\"EUR\")}}\n</li>\n<li>\nals  Vorauszahlung für Heizkosten i.&.v. & 2 BetrKW: {{water_heating | currency(\"EUR\")}}\n</li>\n<li>\n<b>Gesamtmiete: 800€ {{total_rent | currency(\"EUR\")}}</b>\n</li>\n</ul>\n</p>\n\n\n{% if rent_increase_type=='indexed_rent' %}\n{# //INDEXMIETE#}\n<h2>Indexmiete (nur für preisfreien Wohnraum)</h2>\n<ol>\n<li>\nDie Parteien vereinbaren, dass die Miete durch den vom Statistischen Bundesamt ermittelten Preisindex für die\nLebenshaltung aller privaten Haushalte in Deutschland (Verbraucherpreisindex für Deutschland) bestimmt wird.\nEine erste Änderung der Miete kann frühestens nach Ablauf eines Jahres vorgenommen werden. Bei\nweiteren Mieterhöhunsen ist zu beachten, dass die Miete, abgesehen von Erhöhungen nach den §§ 559 bis 560 BGE,\nmindestens ein Jahr unverändert bleiben muss.\n</li>\n<li>\nDie Nettomiete ändert sich jeweils im gleichen prozentualen Werhältnis, wie sich der vom Statistischen Bundesamt\nermittelte Werbraucherindex für Deutschland gegenüber der für den Monat des Beginns des Mietwerhältnisses\nmaßgeblichen bzw. der der jeweils letzten Mietänderung zugrunde gelegten Indexzahl verändert hat.\n<br/>\nDie Änderung der Miete aufgrund dieser Vereinbarung muss durch Erklärung in Textform geltend gemacht werden.\nDabei sind die eingetretene Änderung des Preisindexes sowie die jeweilige Miete oder die Erhöhung in einem\nGeldbetrag anzugeben. Die geänderte Miete ist mit Beginn des übernächsten Monats nach dem Zugang der Erklärung zu\nentrichten.\n</li>\n<li>\nBei Vereinbarung der Indexmiete sind Erhöhungen nach § 558 BGB ausgeschlossen. Eine Erhöhung nach § 559 BGB\nkann nur verlangt werden, wenn der Vermieter bauliche Maßnahmen aufgrund von Umständen durchgeführt hat, die er\nnicht zu vertreten hat.\n</li>\n</ol>\n{% elif rent_increase_type=='graduated_rent' %}\n{# //STAFFELMIETE#}\n<h2>Staffelmiete (nur für preisfreien Wohnraum)</h2>\nDie in §4 vereinbarte Nettomiete erhöht sich frühestens nach Ablaufjeweils eines Jahres, und zwar\n\n<p>Staffelung\n  <br/><br/>\n    <ol>\n      {% for graduation in graduated_rent %}\n      <li> Wirksam ab {{graduation.effective_date}}, Miete: {{graduation.amount | currency(\"EUR\") }}\n      </li>\n        {% if loop.last == false %}\n        <br/>\n        {% endif %}\n      {%- endfor %}\n    </ol>\n</p>\nWährend der Laufzeit der Staffelmiete sind keine weiteren gesetzlichen Mieterhöhungen zulässig, ausgenommen\nErhöhungen der Betriebskosten.\n{% endif %}\t\n\n<h2>Änderung der Miete nach §5 558 und 559 BGB (nur für preisfreien Wohnraum)</h2>\n<ol>\n<li>\nSofern nicht in den Abschnitten 'INDEXMIETE' und 'STAFFELMIETE' dieses Vertrages\nanderes vereinbart ist, kann der Vermieter vom Mieter die Zustimmung zur\nMieterhöhung nach Maßgabe des § 558 BGB (ortsübliche Vergleichsmiete) verlangen.\n</li>\n<li>\nHat der Vermieter nach § 559 BGB bauliche Maßnahmen durchgeführt, die den Gebrauchswert der Mietsache\nnachhaltig erhöhen, die allgemeinen Wohnverhältnisse auf Dauer verbessern oder nachhaltig Einsparungen von Energie\noder Wasser bewirken (Modernisierung), oder hat er andere bauliche Maßnahmen aufgrund von Umständen, die er\nnicht zu vertreten hat, durchgeführt, kann er die jährliche Miete um 11 % der für die Mietsache aufgewendeten\nKosten erhöhen.\n</li>\n<li>\nAuch wenn die Kündigung erst zu einem bestimmten Zeitpunkt zulässig oder der Mietvertrag auf bestimmte Zeit\ngeschlossen ist, sind Mieterhöhungen nach den §§ 558 und 559 BGB nicht ausgeschlossen.\n</li>\n</ol>\n\n\n<h2>Änderung der Miete nach §§ 558 und 559 BGB (nur für preisfreien Wohnraum)</h2>\n<ol>\n  <li>\n  Für die Miethöhe und die neben der Einzelmiete zu erhebenden Betriebskosten gelten die gesetzlichen\n  Bestimmungen. Der Vermieter hat einen sofortigen unmittelbaren Zahlungsanspruch auf gesetzliche oder\n  im Einzelfall senehmigste Mieterhöhungen, Betriebskostenerhöhungen und Zuschläge.\n  </li>\n  <li>\n  Im Übrigen gelten die Abschnitte 'Abrechnung und Anpassung der Betriebskostenvorauszahlungen, Vereinbarung sonstiger\nBetriebskosten' und 'Verteilungsmaßstab' dieses Vertrages entsprechend.\n  </li>\n  <li>\n  Endet die Bindung an die Kostenmiete, gilt der Abschnitt 'Anderung der Miete nach §§ 558 und 559 BGB\n(nur für preisfreien Wohnraum)' dieses Vertrags.\n  </li>\n\n</ol>\n\n<h2>Änderung der Kostenmiete und Betriebskosten (nur für öffentlich geförderten Wohnraum)</h2>\n<ol>\n  <li>\n  Der Vermieter rechnet über die Betriebskosten i.S.v. §3 BetrKV (bei öffentlich gefördertem Wohnraum zuzüglich\n  Umlageausfallwagnis) unter Berücksichtigung der geleisteten Vorauszahlungen jährlich ab. Die Abrechnung ist\n  dem Mieter spätestens bis zum Ablauf des zwölften Monats nach Ende des Abrechnungszeitraums mitzuteilen.\n  Er ist nicht verpflichtet, bei Mieterwechsel eine Zwischenabrechnung zu erstellen.\n  <br/>\n  Sach- und Arbeitsleistungen des Vermieters, durch die Betriebskosten erspart werden, dürfen mit dem Betrag\n  angesetzt werden, der für eine gleichwertige Leistung eines Dritten, insbesondere eines Unternehmers, angesetzt\n  werden könnte. Soweit keine gesetzliche Verpflichtung besteht, darf Umsatzsteuer auf die Leistungen des\n  Vermieters nicht erhoben werden.\n  <br/>\n  Der Vermieter ist berechtigt, im Rahmen ordnungsgemäßer Bewirtschaftung neu entstehende oder nachträglich\n  anfallende Betriebskosten i.S. von  BetrKV auf die Mieter umzulegen und die Vorauszahlungen auf die\n  Betriebskosten in angemessener Höhe neu festzusetzen.\n  </li>\n  <li>\n  Sind Betriebskostenvorauszahlungen vereinbart worden, so kann jede Vertragspartei nach einer Abrechnung durch\n  Erklärung in Textform eine Anpassung auf eine angemessene Höhe vornehmen. Der Vermieter ist berechtigt, wenn\n  sachliche Gründe dafür vorliegen, den Abrechnungszeitraum auch für einzelne Betriebskosten umzustellen.\n  </li>\n  <li>\n  Als sonstige Betriebskosten gemäß § 2 Ziffer 17 BetrKV werden die Kosten der Dachrinnenreinigung sowie die\n  Kosten der Wartung von Feuerlöschern, Rauchabzugsanlagen und Rauchwarnmeldern vereinbant.\n  </li>\n</ol>\n\n{% if housing.building_type=='flat' %}\n{# //Dieser Abschnitt 'Verteilungsmaßstab'scheint nur für die Wohnungen relevant zu sein #}\n<h2>Verteilungsma&szlig;tab</h2>\n<ol>\n<li>\n  {% if diff_operatingcosts_percentage and operatingcosts_percentage > 0 %}\n  Der Mieter trägt von den Betriebskosten einen Anteil von {{operatingcosts_percentage}}%.\n  {% else %}\n  Sofern ein Prozentsatz nicht festgelegt ist, trägt der Mieter einen Anteil bemessen nach dem Verhältnis\n  der Wohnfläche seiner Wohnung zur Summe der Wohn- und Nutzflächen aller Wohn- und Gewerberäume der\n  Wirtschaftseinheit. Führt dieser Verteilungsmaßstab zu grob unbilligen Ergebnissen, ist der Vermieter\n  berechtigt und verpflichtet, den Maßstab nach billigem Ermessen zu ändern, hinsichtlich der Heizkosten\n  jedoch nur entsprechend den Bestimmungen der HeirkostenV. Wird der Mieter grob unbillig mit Kosten belastet,\n  die insbesondere durch die gewerbliche Nutzung des Grundstücks veranlasst werden, so ist der Vermieter\n  verpflichtet, soweit dies möglich ist, die Betriebskosten, die nicht für Wohnraum entstanden sind, vorweg\n  abzuziehen.\n  {% endif %}\n</li>\n<li>\n  Bei vermieteten Eigentumswohnungen trägt der Mieter denjenigen Anteil an den vereinbarten Betriebskosten gemäß\n  § 2 Betriebskostenverordnung, den die Einzelabrechnung des Wohnungseigentumsverwalters vorgibt, sofern der Mieter\n  hierdurch nicht grob unbillig benachteiligt wird. Daneben trägt er die weiteren Betriebskosten, die außerhalb\n  dieser Abrechnung unmittelbar auf die Wohnung entfallen (z.B. Grundsteuer).\n</li>\n<li>\n  Die Verteilung der Heiz- und Warmwasserkosten erfolgt\n  <ol>\n  <li>\n    nach dem Werhältnis der Wohn—Nutzflächen,\n  </li>\n  <li>\n    bei Verwendung messtechnischer Ausstattungen zur Verbrauchserfassung nach dem vom Vermieter gemäß §§\n    7 bis 10 HeizkostenV bestimmten Abrechnungsmaßstab.\n  </li>\n  </ol>\n  Die Heizkosten können auch nach der Gradtagstabelle aufgeteilt werden.\n</li>\n<li>\n  Sofern der Vermieter Wasserzähler eingebaut hat, werden die verbrauchsabhängigen Kosten der Wasserversorgung\n  und der Entwässerung nach dem gemessenen Wasserverbrauch aufgeteilt. Dies gilt auch für die\n  verbrauchsunabhängigen Kosten, es sei denn, eine solche Kostenverteilung führt zu einer unbilligen\n  Mehrbelastung des Mieters. Die Kosten der Niederschlagsentwässerung sind, soweit diese getrennt vom\n  Schmutzwasser erhoben werden, nach dem in Ziffer I oder II vereinbarten Maßstab zu verteilen. Auf Verlangen\n  des Vermieters hat der Mieter selbst einen Versorgungsvertrag mit dem Wasserlieferanten abzuschließen.\n</li>\n<li>\n  Bei Mieterwechsel trägt der ausziehende Mieter die Kosten der Zwischenablesung und die Nutzerwechselgebühren.\n</li>\n<li>\n  Die Verteilung der Kabelbenutzungsgebühren erfolgt nach Wohneinheiten.\n</li>\n<li>\n  Der Vermieter kann durch schriftliche Erklärung bestimmen, dass die Kosten der Müllabfuhr nach einem Maßstab\n  umgelegt werden, der der unterschiedlichen Müllverursachung Rechnung trägt. Auf Verlangen des Vermieters hat\n  der Mieter selbst einen Entsorgungsvertrag mit dem entsprechenden Unternehmen abzuschließen.\n</li>\n</ol>\n{% endif %}\n\n{% if housing.building_type=='house' %}\n{# //Dieser Abschnitt scheint nur für die Häuser  relevant zu sein #}\nh2>Beheizung und Warmwasserversorgung</h2>\n<ol>\n<li>\n  Der Mieter betreibt die Heizungs- und Warmwasserversorgungsanlage auf eigene Kosten selbst.\n  Der Umfang dieser Kosten bestimmt sich nach folgenden Vorschriften:\n  <ol>\n    <li>\n      Heizkosten: § 2 Ziffer 4a Betriebskostenverordnung\n    </li>\n    <li>\n      l Kosten der Warmwasserversorgung: § 2 Ziffer 5a Betriebskostenverordnung\n    </li>\n  </ol>\n</li>\n<li>\n  Der Mieter ist verpflichtet, den bei Übergabe der Mietsache vorhandenen Brennstoff zu dem Preis zu\n  übernehmen, den der Vermieter für die Anschaffung aufwenden musste. Der Vermieter ist bei Rückgabe\n  der Mietsache verpflichtet, dem Mieter den vorhandenen Brennstoff zu dessen Anschaffungspreis abzunehmen.\n</li>\n{% if alternative_heating_forms  %}\n<li>\n  Andere Formen der Beheizung beziehungsweise Warmwasserversorgung (z.B. Fernwärme oder Contracting)\n  sind {{alternative_heating_forms}}\n</li>\n{% endif %}\n</ol>\n\n{% endif %}\n\n<h2>Zahlung der Miete</h2>\n<ol>\n  <li>\n    Die Miete ist monatlich im Voraus, spätestens am dritten Werktag eines Monats zu zahlen. Für die\n    Rechtzeitigkeit der Zahlung kommt es nicht auf die Absendung, sondern auf den Eingang des Geldes an.\n  </li>\n  <li>\n    Bei Zahlungsverzug ist der Vermieter berechtigt, die gesetzlichen Verzugszinsen und für jede schriftliche\n    Mahnung einen Betrag von 2,50 EUR zu erheben. Die Geltendmachung weiteren Schadens bleibt vorbehalten.\n  </li>\n  <li>\n    Konto des Vermieters (oder einen abweichenden Zahlungsempfängers): <br/>\n    Kontoinhaber: {{lessors[0].first_name}} {{lessors[0].last_name}}<br/>\n    Kreditinstitut: {{lessors[0].bank}} <br/>\n    IBAN: {{lessors[0].iban}} <br/>\n    BIC: {{lessors[0].bic}}\n  </li>\n  <li>\n    Der Mieter ermächtigt den Vermieter, die Miete sowie die Nachzahlunsen aus Betriebs- und\n    Heizkostenabrechnungen durch Abbuchungen von dem vom Mieter angegebenen Konto einzuziehen. Diese\n    Ermächtigung kann der Mieter aus wichtigem Grund widerrufen.\n  </li>\n  {#=============================================\n  <li>\n    Konto des Mieters: <br/>\n    Kontoinhaber: {{paying_tenant.first_name}} {{paying_tenant.last_name}}<br/>\n    Kreditinstitut: {{paying_tenant_bank}} <br/>\n    IBAN: {{paying_tenant_iban}} <br/>\n  </li>\n  ==============================================#}\n</ol>\n{% if rent_deposit_amount > 0 %}\n<h2>Mietsicherheit</h2>\n<ol>\n<li>\n  Der Mieter leistet bei Abschluss des Mietvertrags eine Mietsicherheit in Höhe von {{rent_deposit_amount | currency(\"EUR\")}}, höchstens\n  jedoch in Höhe der dreifachen Monatsmicte. Als Vorauszahlung ausgewiesene Betriebskosten bleiben unberücksichtigt.\n  Ist als Sicherheit eine Geldsumme bereitzustellen, so ist der Micter zu drei gleichen monatlichen Teilzahlungen\n  berechtigt. Die erste Teilzahlung ist zu Beginn des Mietverhältnisses fällig.\n</li>\n<li>\n  Der Vermieter hat eine ihm als Sicherheit überlassene Geldsumme bei einem Kreditinstitut zu dem für Spareinlagen\n  mit dreimonatiger Kündigungsfrist üblichen Zinssatz anzulegen. Die Anlage muss vom Vermögen des Wermieters\n  getrennt erfolgen. Die Erträge stehen dem Mieter zu. Sie erhöhen die Sicherheit.\n</li>\n<li>\n  Der Vermieter gibt dem Mieter nach Beendigung des Mietverhältnisses innerhalb angemessener Frist nach Räumung\n  und Rückgabe der Mietsache die Mietsicherheit nebst Zinsen zurück, soweit gegen ihn keine Ansprüche aus dem\n  Mietverhältnis bestehen oder zu erwarten sind.\n</li>\n{% if building_type=='flat' %}\n<li>\n<li>\n  Im öffentlich geförderten Wohnraum ist die Mietsicherheit nur dazu bestimmt, Ansprüche des Vermicters gegen\n  den Mieter aus Schäden an der Wohnung oder unterlassenen Schönheitsreparaturen zu sichern.\n</li>\n</li>\n{% else %}\n{# //building_type=='house' #}\n{% endif %}\n</ol>\n{% endif %}\n<h2>Wegereinigung und Streupflicht, Treppenhausreinigung und sonstige Reinigungspflichten</h2>\n<ol>\n<li>\n  Der Mieter übernimmt die Wegereinigung des öffentlichen Gehwegs, der Zuwegung zum Haus und zu den\n  Abfallbehältern, soweit der Vermieter die Reinigungspflicht nicht ausdrücklich übernimmt. Gehwege sind alle\n  öffentlichen, dem Fußgänger- oder Fahrradverkehr dienenden, von der Fahrbahn baulich abgesetzten Wegeanlagen in\n  geschlossener Ortslage. Die Reinigungspflicht erstreckt sich auf die Beseitigung von Laub, Unrat und sonstigen\n  Verschmutzungen. Der Kehricht ist wegzuschaffen. Während der Wintermonate sind Schnee und Eis zu den üblichen\n  Verkehrszeiten zu beseitigen; ausgenommen von der Reinigung sind die ausschließlich dem Fahrradverkehr dienenden\n  Flächen. Tausalz und tausalzhaltige Mittel dürfen nicht verwendet werden. Eisbildungen, denen nicht ausreichend\n  durch Streuen entgegengewirkt werden kann, sind zu beseitigen. Straßenrinnen sind spätestens bei Eintritt von\n  Tauwetter von Schnee und Eis so freizumachen, dass Schmelzwasser ablaufen kann. Der Mieter besorgt sich das\n  Streumaterial auf eigene Kosten.\n</li>\n<li>\n  Der Mieter übernimmt die Treppenhausreinigung sowie die Reinigung der dem gemeinschaftlichen Gebrauch\n  dienenden Räume entsprechend der Hausordnung, soweit nicht der Vermieter die Reinigung ausdrücklich übernimmt.\n  Das erforderliche Reinigungsmaterial hat er sich auf eigene Kosten zu beschaffen.\n</li>\n<li>\n  Ablaufschächte auf Balkonen, Loggien usw. sowie deren Abdeckungen sind durch den Mieter von Laub, Unrat und\n  sonstigen Verschmutzungen freizuhalten.\n</li>\n<li>\n  Der Vermieter ist berechtigt, wenn dies zur ordnungsgemäßen Bewirtschaftung erforderlich ist, nach vorheriger\n  Ankündigung die gesamten oder einzelne Reinigungspflichten selbst zu übernehmen oder sie einem Dritten zur\n  Ausführung zu übertragen und die entstehenden Kosten als Betriebskosten gemäß Abshcnitte 'Abrechnung und Anpassung der Betriebskostenvorauszahlungen, Vereinbarung sonstiger\n  Betriebskosten' und 'Verteilungsmaßstab' dieses Vertrages zu erheben.\n  Unter denselben Voraussetzungen ist er berechtigt, Reinigungspflichten wieder auf den Mieter zu übertragen.\n</li>\n<li>\n  Sofern mehrere Mieter zur Reinigung verpflichtet sind, erfolgt die Reinigung nach einem vom Vermieter\naufgestellten Plan.\n</li>\n<li>\n  Bei vorübergehender Verhinderung (z.B. Krankheit, Ortsabwesenheit) hat der Mieter auf seine Kosten für\n  Vertretung zu sorgen.\n</li>\n</ol>\n<h2>Haftung</h2>\n<ol>\n<li>Der Vermieter haftet bei einer Verletzung des Lebens, des Körpers, der Gesundheit, des Eigentums oder des\nVermögens des Mieters, die ein bei Abschluss des Mietvertrags vorhandener oder angelester Sachmangel des\nMietobjekts verursacht, nicht, es sei denn,\n<ol>\n<li>ihn trifft ein Verschulden oder</li>\n<li>er beseitigt den Mangel nach Kenntnis nicht unverzüglich und dem Mieter entsteht hierdurch\n  ein Schaden</li>\n</ol>\n</li>\n<li>Im Übrigen gelten die gesetzlichen Regelungen.</li>\n</ol>\n{% if housing.building_type=='flat' %}\n<li>\n  <h2>Zentralheizung</h2>\n  Der Vermieter ist verpflichtet, zentralbeheizte Wohnungen so mit Wärme zu versorgen, dass die mit Heizkörpern\n  ausgestatteten Räume bei geschlossenen Fenstern und Türen in der Zeit von 6 bis 23 Uhr auf 20 C, einen Meter\n  über dem Fußboden in der Zimmermitte gemessen, erwärmt werden.\n</li>\n{% else %}\n{# //building_type=='house' #}\n{% endif %}\n\n<h2>Benutzung der Mieträume</h2>\n<ol>\n<li>\n  Der Mieter hat die gemieteten Räume sowie die zur gemeinschaftlichen Benutzung bestimmten Räume,\n  Einrichtungen und Anlagen schonend und pfleglich zu behandeln und ordnungsgemäß zu reinigen;\n  dazu gwhört auch das regelmäßige Putzen der Fensterscheiben einschließlich der Rahmen. Er hat\n  für ausreichende Lüftung und Heizung aller ihm überlassenen Räume zu sorgen. Eine ordnungsgemäße\n  Lüftung liest regelmäßig vor, wenn morgens und abends ausreichend lange quergelüftet wird.\n  <br/>\n  Der Mieter ist verpflichtet, beim Vorhandensein eines Aufzugs die Benutzungs- und Bedienungsvorschriften zu\n  beachten.\n</li>\n\n<li>\n  Der Mieter haftet für jede schuldhafte Beschädigung der Mietsache und des Hauses sowie sämtlicher zum Hause\n  oder den Räumen gehörenden Anlagen und Einrichtungen, die er, die Angehörigen seines Haushalts, seine Untermieter\n  oder die Personen verursachen, die auf seine Veranlassung mit der Mietsache in Berührung kommen.\n<li>\n  Der Mieter haftet für jede schuldhafte Beschädigung der Mietsache und des Hauses sowie sämtlicher zum Hause\n  oder den Räumen gehörenden Anlagen und Einrichtungen, die er, die Angehörigen seines Haushalts, seine\n  Untermieter oder die Personen verursachen, die auf seine Veranlassung mit der Mietsache in Berührung kommen.\n</li>\n</ol>\n\n<h2>Instandhaltung der Mieträume</h2>\n  <ol>\n<li>\n  Der Mieter ist während der Mietzeit verpflichtet, die laufenden Schönheitsreparaturen innerhalb der Mietsache\n  auszuführen, soweit diese durch den vertragsgemäßen Gebrauch der Mietsache seit Mietbeginn erforderlich werden.\n  Zu den Schönheitsreparaturen gchören: Das Tapezieren, Anstreichen der Wände und der Decken, das Pflegen und\n  Reinigen der Fußböden, das Streichen der Innentüren, der Fenster und Außentüren von innen sowie das Streichen\n  der Heizkörper und Versorgungsleitungen innerhalb der Mietsache. Die Arbeiten sind handwerksgerecht auszuführen.\n  Demgemäß sind die Mieträume zum Ende des Mietverhältnisses in dem Zustand zurückzugeben, der bestehen würde,\n  wenn der Mieter die erforderlichen Schönheitsreparaturen durchgeführt hätte. Naturbelassene und nicht farbig\n  lackierte Holzteile oder Flächen, auf denen eine Holzmaserung abgebildet ist, dürfen ohne Genehmigung des\n  Vermieters nicht verändert werden. Farbig gestrichene Holzteile sind in dem Farbton zurückzugeben, wie er bei\n  Vertragsbeginn vorgegeben war; sie können auch in Weiß oder hellen Farbtönen gestrichen zurückgegeben werden.\n</li>\n<li>\n  Kommt der Mieter den von ihm vorstehend übernommenen Verpflichtungen trotz Fälligkeit und Fristsetzung nicht\n  nach, kann der Vermieter Schadensersatz verlangen; im Falle der Schönheitsreparaturen steht dem Vermieter dieses\n  Recht erst bei Beendigung des Mietverhältnisses zu. Der Fristsetzung bedarf es nicht, soweit der Mieter\n  die Erfüllung der ihm obliegenden Verpflichtungen emsthaft und endgültig verweigert. Der Mieter hat auch\n  nachweislich entstehenden Mietausfall und die zur Beweissicherung und Ermittlung des Schadens notwendigen\n  Kosten für ein Sachverständigengutachten zu ersetzen.\n</li>\n<li>\n  Der Mieter trägt die Kosten der Reparaturen der Installationsgegenstände für Elektrizität, Wasser und Gas,\n  der Heiz- und Kocheinrichtungen sowie der Fenster- und Türverschlüsse, soweit die Kosten der einzelnen Reparatur\n  100,00 EUR und der dem Mieter dadurch in den letzten 12 Monaten entstehende Aufwand 300,00 EUR, höchstens\n  jedoch 8% der jeweiligen Jahres-Nettomiete nicht übersteigen.\n</li>\n<li>\n  Zeigt sich im Laufe der Mietzeit ein Mangel der gemieteten Sache, so hat der Mieter dem Wermieter unverzüglich\n  Anzeige zu machen.\n</li>\n  </ol>\n<h2>Abfallbeseitigung</h2>\n    Werden für die Abfallbeseitigung getrennte Behälter zur Verfügung gestellt, ist der Mieter verpflichtet,\n    diese entsprechend zu benutzen.\n\n  {% if garden_available %}\n  <h2>Gartenpflege</h2>\n    {% if garden_exclusive_usage %}\n    Der mitvermietete Garten ist dem Mieter zur alleinigen Nutzung überlassen.\n    <br/>\n    {% endif %}\n  Der Mieter ist verpflichtet, den Garten ständig zu pflegen. Ein Ziergarten ist als solcher zu\n  erhalten. Zur Gartenpflege gehört üblicherweise: den Rasen in der Zeit von April bis Oktober zweimal\n  monatlich zu mähen, Hecken, Obstbäume und Ziersträucher einmal jährlich zu beschneiden, Blumenbeete und Wege\n  von Unkraut freizuhalten. Kommt der Mieter dieser Verpflichtung trotz Fälligkeit und Fristsetzung nicht\n  unverzüglich nach, kann der Vermieter Schadensersatz verlangen. Der Mieter hat sich die erforderlichen\n  Geräte und Betriebsmittel auf eigene Kosten zu beschaffen.\n  {% endif %}\n    <h2>Erhaltungs- und Modernisierungsmaßnahmen</h2>\n    <ol>\n      <li>\n        Der Micter hat Maßnahmen zu dulden,\n        die zur Erhaltung der Mieträume oder des Gebäudes erforderlich sind.\n      </li>\n      <li>\n        Maßnahmen zur Verbesserung der gemieteten Räume oder sonstiger Teile des Gebäudes,\n        zur Einsparung von Energie oder Wasser oder zur Schaffung neuen Wohnraums hat der\n        Mieter zu dulden. Dies gilt nicht, wenn die Maßnahme für ihn, seine Familie oder\n        einen anderen Angehörigen seines Haushalts eine Härte bedeuten würde, die auch unter\n        Würdigung der berechtigten Interessen des Vermieters und anderer Mieter in dem Gebäude\n        nicht zu rechtfertigen ist. Dabei sind insbesondere die vorzunehmenden Arbeiten, die\n        baulichen Folgen, vorausgegangene Aufwendungen des Mieters und die zu erwartende\n        Mieterhöhung zu berücksichtigen. Die zu erwartende Mieterhöhung ist nicht als Härte\n        anzuschen, wenn die Mietsache lediglich in einen Zustand versetzt wird, wie er allgemein\n        üblich ist.\n        <br/>\n        Der Vermieter hat dem Mieter spätestens drei Monate vor Beginn der Maßnahme deren Art sowie\n        voraussichtlichen Umfang und Beginn, voraussichtliche Dauer und die zu erwartende Mieterhöhung\n        in Textform mitzuteilen.\n      </li>\n    </ol>\n\n    <h2>Bauliche Veränderungen und Einbauten durch den Mieter</h2>\n      <ol>\n        <li>\n          Nachhaltige Veränderungen an und in den Mieträumen, insbesondere Um- und Einbauten, Installationen\n          und dergleichen dürfen nur mit Erlaubnis des Vermieters vorgenommen werden. Die Erlaubnis kann\n          davon abhängig gemacht werden, dass der Mieter sich zur völligen oder teilweisen Wiederherstellung\n          des früheren Zustandes im Falle seines Auszuges verpflichtet.\n        </li>\n        <li>\n          Will der Mieter Einrichtungen, mit denen er die Mieträume verschen hat, bei Beendigung des\n          Mietverhältnisses wegnehmen, hat er sie zunächst dem Vermieter zur Übernahme anzubieten.\n          Wenn der Vermieter die Einrichtung übernehmen will, hat er nach seiner Wahl dem Mieter\n          die Herstellungskosten abzüglich eines angemessenen Betrages für die Abnutzung zu erstatten\n          oder in sonstiger Weise einen angemessenen Ausgleich zu leisten.\n        </li>\n        <li>\n          Macht der Vermieter von seinem Übernahmerecht keinen Gebrauch, hat der Mieter die Einrichtungen\n          wegzunehmen und den ursprünglichen Zustand der Räume auf seine Kosten handwerksgerecht\n          wiederherzustellen. Hierzu gehört auch die Beseitigung von Dekorationsschäden.\n        </li>\n      </ol>\n\n<h2>Anbringen von Antennen und Kabelanschluss</h2>\nDas Anbringen von Einzelantennen und Kabelanschlüssen durch den Mieter ist nur mit Erlaubnis des Vermieters\ngestattet. Der Vermieter kann Ort und Art der Anbringung bestimmen. Behördliche Vorschriften sind zu beachten,\nandernfalls ist der Mieter zur Entfernung der Antenne verpflichtet. Der Vermieter kann die Erlaubnis davon abhängig\nmachen, dass der Mieter den Vermieter von allen in Zusammenhang mit der Installation zusammenhängenden Kosten\nund Gebühren freihält, in angemessener Höhe für den Beseitigungs- und Wiederherstellungsaufwand Sicherheit leistet\nund sich zur Entfernung verpflichtet, sobald seine Mietsache vom Vermieter in zulässiger Weise an das\nBreitbandkabelnetz oder Satellitenfernschen angeschlossen ist. Im Übrigen gilt der Abschnitt 'Bauliche Veränderungen\nund Einbauten durch den Mieter'.\n\n\n<h2>Untervermietung</h2>\n  <ol>\n    <li>\n      Der Mieter ist ohne Erlaubnis des Vermieters weder zu einer Untervermietung\n      der sesamten Mieträume noch zu einer sonstigen dauernden\n      Gebrauchsüberlassung an Dritte berechtigt.\n    </li>\n    <li>\n      Entsteht für den Mieter nach Abschluss des Mietvertrages ein berechtigtes\n      Interesse, einen Teil des Wohnraums einem Dritten zum Gebrauch zu überlassen,\n      so kann er von dem Vermieter die Erlaubnis hierzu verlangen. Dies gilt\n      nicht, wenn in der Person des Dritten ein wichtiger Grund vorliegt, der\n      Wohnraum übermäßig belegt würde oder dem Vermieter die Überlassung aus\n      sonstigen Gründen nicht zugemutet werden kann. Ist dem Vermieter die Überlassung\n      nur bei einer angemessenen Erhöhung der Miete zuzumuten, so kann er die\n      Erlaubnis davon abhängig machen, dass der Mieter sich mit einer solchen\n      Erhöhung einverstanden erklärt.\n    </li>\n  </ol>\n\n  <h2>Betreten der Wieträume durch den Vermieter — Besichtigung für Miet- und Kaufinteressenten</h2>\n    <ol>\n      <li>\n        Der Vermieter und/oder sein Beauftragter können die Mietsache zur Prüfung\n        ihres Zustandes zu angemessener Tageszeit und, um sie Mietinteressenten\n        nach einer Kündigung oder Kaufinteressenten bei beabsichtigtem Verkauf zu\n        zeigen, zweimal pro Woche werktags in der Zeit von 16 bis 19 Uhr betreten.\n        Der Vermieter teilt dem Mieter die Termine angemessene Zeit vorher mit.\n        In Fällen der Gefahr ist das Betreten der Räume zu jeder Tages— und Nachtzeit\n        gestattet.\n      </li>\n      <li>\n        Bleiben bei längerer Abwesenheit des Mieters die Räume unbeaufsichtigt,\n        so hat er dem Vermieter oder seinem Beauftrasten die Schlüssel zu den\n        Räumen zur Verfügung zu stellen, andernfalls ist der Vermieter berechtigt,\n        die Räume in dringenden Fällen auf Kosten des Mieters öffnen zu lassen.\n      </li>\n      <li>\n        Der Mieter ist verpflichtet, zum ordnungsgemäßen Ablesen und Austausch von\n        Verbrauchserfassungssgeräten den Zutritt zur Mietsache zu gewähren.\n      </li>\n    </ol>\n\n  <h2>Tierhaltungsrerbot</h2>\n    Tiere dürfen nicht gchalten werden mit Ausnahme von Kleintieren wie z. B.\n    Zierfische, Wellensittiche, Hamster. Dies gilt auch für die zeitweilige\n    Verwahrung von Tieren. Sofern die Parteien etwas anderes wollen, bedarf es einer\n    Vereinbarung.\n    <br/>\n    Der Mieter verpflichtet sich, das Füttern von Möwen, Tauben usw. vom Grundstück\n    aus wegen Verschmutzung des Hauses und Belästigung der Mitbewohner zu unterlassen.\n\n  <h2>Anbringung von Schildern, Reklameflächen</h2>\n    <ol>\n      <li>\n        Zur Anbringung von Schildern, Aufschriften und anderen Vorrichtungen\n        außerhalb der Mieträume ist die Erlaubnis des Vermicters erforderlich.\n        Sie kann widerrufen werden, wenn sich für das Gebäude, die Mitbewohner\n        oder die Anlieger Unzuträglichkeiten ergeben.\n      </li>\n      <li>\n        Etwa erforderliche behördliche Genehmigungen sind vom Mieter einzuholen;\n        er trägt alle mit der Anbringung oder Aufstellung verbundenen Kosten,\n        Gebühren und Abgaben.\n      </li>\n      <li>\n        Bei Beendigung des Mietverhältnisses oder bei Widerruf der Genehmigung\n        hat der Mieter auf Verlangen des Vermieters den früheren Zustand auf seine\n        Kosten wiederherzustellen.\n      </li>\n    </ol>\n\n\n    <h2>Beendigung des Mietrerhältnisses</h2>\n      <ol>\n        <li>\n          Bei Beendigung des Mietverhältnisses, spätestens bei seinem Auszug,\n          hat der Mieter die Mieträume gemäß Abshcnitt 'Instandhaltung der Mieträume' dieses Vertrags. im\n          Übrigen in sauberem Zustand zurückzugeben.\n        </li>\n        <li>\n          Vom Mieter entfernte Ausstattungen hat er in gebrauchsfähisem Zustand\n          wiederherzustellen.\n        </li>\n        <li>\n          Sämtliche Schlüssel, auch die von ihm selbst beschafften, hat der\n          Mieter dem Vermieter auszuhändigen.\n        </li>\n        <li>\n          Die Rückgabe der Räume hat an dem Werktag bis mittags 12 Uhr zu\n          erfolgen, welcher dem Ablauf des Mietvertrags folgt.\n        </li>\n      </ol>\n\n<h2>Hausordnung</h2>\nDer Mieter ist an Änderungen und Zusätze zur Hausordnung gebunden, wenn der\nVermieter sie ihm bekannt gibt und sie unter Berücksichtigung einer\nordnungsgemäßen Verwaltung und Bewirtschaftung des Hauses angemessen sind.\nDer Mieter haftet dafür, dass auch die Ansgehörigen seines Haushalts, seine\nUntermieter und die Personen, die auf seine Veranlassung mit der Mietsache in\nBerührung kommen, die Hausordnung einhalten.\n\n<h2>Personenmehrheit</h2>\n    <ol>\n      <li>\n        Mehrere Personen als Vermieter/Mieter - z. B. Ehegatten - haften für die\n        Verpflichtungen aus dem Mietvertrag als Gesamtschuldner.\n      </li>\n      <li>\n        Erklärungen, deren Wirkung das Mietverhältnis berührt, müssen von oder\n        gegenüber allen Mietern abgegeben werden. Die Mieter bevollmächtigen sich\n        gegenseitig zur Entgegennahme solcher Erklärungen. Diese Vollmacht gilt\n        auch für die Entgegennahme von Kündigungen, jedoch nicht für\n        Mietaufhebungsverträge.\n      </li>\n    </ol>\n\n{% if additional_negiations%}\n<h2>Sonstige Vereinbarungen</h2>\n    {{additional_negiations}}\n{% endif %}\n\n\n{% if parking_available%}\n<h2>Parking</h2>\n  Zusammen mit der Mietsache wird\n  {% if parking_type=='undergroundParkingSpace' %}\n    der Tiefgaragenstellplatz\n  {% elif parking_type=='parkingSpace'  %}\n    der Stellplatz\n  {% elif parking_type=='garage'  %}\n    der Garage\n  {% endif %}\n  {% if parking_number %}\n    mit der Nummer {{parking_number}}\n  {% endif %} vermietet.\n  Die Miete dafür beträgt monatlich {{parking_rent | currency(\"EUR\")}} und ist zusätzlich mit\n  der genannten Miete für die Mietsache (s. Abschnitt 'Miete')  monatlich zu entrichten bzw. wird\n  monatlich per Lastschriftverfahren eingezogen.\n    </li>\n  </ol>\n{% endif %}",
+  "name": "Mietvertrag",
+  "category": "Mietunterlagen",
+  "purpose": "Durch den Mietvertrag wird der Vermieter verpflichtet, dem Mieter die Wohnung zur Benutzung zu überlassen. Der Mieter wird demgegenüber verpflichtet, an den Vermieter die vertraglich vereinbarte die Miete zu zahlen und die Benutzung nur im vertraglich festgelegten Rahmen auszuüben."
+}

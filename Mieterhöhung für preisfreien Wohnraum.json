@@ -1,0 +1,352 @@
+{
+  "wizard": [
+    {
+      "properties": [
+        {
+          "name": "mieter",
+          "label": "Mieter",
+          "type": "array",
+          "items": {
+            "type": "person",
+            "properties": [
+              {
+                "name": "first_name",
+                "label": "Vorname",
+                "type": "text",
+                "required": true,
+                "inline": true,
+                "warnings": [],
+                "errors": [],
+                "items": {
+                  "label": ""
+                },
+                "min": "",
+                "rows": 1
+              },
+              {
+                "name": "last_name",
+                "label": "Nachname",
+                "type": "text",
+                "required": true,
+                "inline": true,
+                "warnings": [],
+                "errors": []
+              },
+              {
+                "name": "company",
+                "label": "Unternehmen",
+                "type": "text",
+                "required": false,
+                "inline": true,
+                "warnings": [],
+                "errors": [],
+                "rows": 1
+              },
+              {
+                "name": "email",
+                "label": "E-Mail",
+                "type": "email",
+                "required": false,
+                "inline": true,
+                "warnings": [],
+                "errors": []
+              },
+              {
+                "name": "tel",
+                "label": "Telefon",
+                "type": "tel",
+                "required": false,
+                "inline": true,
+                "warnings": [],
+                "errors": []
+              },
+              {
+                "name": "address",
+                "label": "Adresse",
+                "type": "address",
+                "required": false,
+                "inline": false,
+                "warnings": [],
+                "errors": []
+              }
+            ],
+            "label": "Ohne Titel"
+          },
+          "warnings": [],
+          "errors": [],
+          "min": "1"
+        },
+        {
+          "name": "wohnung",
+          "label": "Wohnung",
+          "type": "object",
+          "properties": [
+            {
+              "name": "whg_adresse",
+              "label": "Wohnungsadresse",
+              "type": "address",
+              "required": true,
+              "inline": false,
+              "warnings": [],
+              "errors": [],
+              "hint": ""
+            },
+            {
+              "name": "wohnlage",
+              "label": "Wohnlage",
+              "type": "choice",
+              "required": true,
+              "inline": false,
+              "warnings": [],
+              "errors": [],
+              "options": [
+                {
+                  "label": "Normal ",
+                  "value": "normal"
+                },
+                {
+                  "label": "Gut",
+                  "value": "gut"
+                }
+              ],
+              "step": "",
+              "min": ""
+            },
+            {
+              "name": "baualter",
+              "label": "Baualter (Jahre)",
+              "type": "number",
+              "required": true,
+              "inline": false,
+              "warnings": [],
+              "errors": [],
+              "step": "1",
+              "min": "0"
+            },
+            {
+              "name": "groesse",
+              "label": "Größe der Wohnung",
+              "type": "number",
+              "required": true,
+              "inline": false,
+              "warnings": [],
+              "errors": [],
+              "step": "0.01",
+              "min": "0",
+              "unit": "m²"
+            }
+          ],
+          "warnings": [],
+          "errors": []
+        }
+      ],
+      "name": "",
+      "label": "",
+      "hint": "",
+      "if": "",
+      "unit": "",
+      "step": "",
+      "min": ""
+    },
+    {
+      "properties": [
+        {
+          "name": "grosszug_badausstatt",
+          "label": "Großzügige Badausstattung",
+          "type": "choice",
+          "required": false,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "options": [
+            {
+              "label": "Ja",
+              "value": "true"
+            },
+            {
+              "label": "Nein",
+              "value": "false"
+            }
+          ],
+          "collapsehint": true,
+          "hint": "z.B. zusätzliches Duschbad, zweiter Waschplatz, zweites WC, Bidet, aufwändige Fliesen etc."
+        },
+        {
+          "name": "ebk",
+          "label": "Einbauküche",
+          "type": "choice",
+          "required": false,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "options": [
+            {
+              "label": "Ja",
+              "value": "true"
+            },
+            {
+              "label": "Nein",
+              "value": "false"
+            }
+          ],
+          "hint": ""
+        },
+        {
+          "name": "bodenbelag",
+          "label": "Hochwertige Fußböden",
+          "type": "choice",
+          "required": false,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "options": [
+            {
+              "label": "Ja",
+              "value": "ja"
+            },
+            {
+              "label": "Nein",
+              "value": "nein"
+            }
+          ],
+          "hint": "z.B. Parkett"
+        },
+        {
+          "name": "zusatz",
+          "label": "Weitere Merkmale",
+          "type": "text",
+          "required": false,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "rows": 3
+        }
+      ],
+      "name": "",
+      "label": "",
+      "step": "",
+      "min": ""
+    },
+    {
+      "properties": [
+        {
+          "name": "miete",
+          "label": "Miete",
+          "type": "object",
+          "properties": [
+            {
+              "name": "nettomiete",
+              "label": "Neue Nettomiete",
+              "type": "number",
+              "required": false,
+              "inline": false,
+              "warnings": [],
+              "errors": [],
+              "hint": "Nennen Sie hier Ihre neue Nettomiete  unter Berücksichtigung der Kappungsgrenze",
+              "step": "0.01",
+              "min": "1"
+            },
+            {
+              "name": "betr_kosten",
+              "label": "Betriebskosten",
+              "type": "number",
+              "required": true,
+              "inline": false,
+              "warnings": [],
+              "errors": [],
+              "unit": "€",
+              "step": "0.01",
+              "min": "1",
+              "hint": ""
+            },
+            {
+              "name": "heizkosten",
+              "label": "Heizkosten",
+              "type": "number",
+              "required": true,
+              "inline": false,
+              "warnings": [],
+              "errors": [],
+              "unit": "€",
+              "min": "1",
+              "step": ""
+            },
+            {
+              "name": "garage_vorhanden",
+              "label": "Garage oder Stellplazmiete vereinbart",
+              "type": "choice",
+              "required": false,
+              "inline": false,
+              "warnings": [],
+              "errors": [],
+              "options": [
+                {
+                  "label": "Ja",
+                  "value": "true"
+                },
+                {
+                  "label": "Nein",
+                  "value": "false"
+                }
+              ],
+              "if": "",
+              "unit": "",
+              "step": ""
+            },
+            {
+              "name": "garagenmiete",
+              "label": "Garagen-/Stellplatzmiete",
+              "type": "number",
+              "required": false,
+              "inline": false,
+              "warnings": [],
+              "errors": [],
+              "if": "miete.garage_vorhanden=='true'",
+              "unit": "€",
+              "step": "0.01",
+              "min": ""
+            }
+          ],
+          "warnings": [],
+          "errors": [],
+          "unit": "",
+          "step": "",
+          "min": ""
+        },
+        {
+          "name": "neuemiete_zum",
+          "label": "Die neue Miete ist zu zahlen zum",
+          "type": "date",
+          "required": false,
+          "inline": false,
+          "warnings": [],
+          "errors": []
+        },
+        {
+          "name": "zustimmung_zum",
+          "label": "Frist für die Zustimmung des Mieters",
+          "type": "date",
+          "required": false,
+          "inline": false,
+          "warnings": [],
+          "errors": [
+            {
+              "if": "zustimmung_zum >= neuemiete_zum",
+              "text": "Die Zustimmung des Mieters muss vor der Erhöhung der Mieter vorligen"
+            }
+          ]
+        }
+      ],
+      "name": "",
+      "label": "",
+      "hint": "",
+      "step": "",
+      "min": ""
+    }
+  ],
+  "script": "this.netto_miete_total= null;\n\nobserve('miete.nettomiete', () => {\n  //this.netto_miete_total = this.wohnung.groesse * 10\n})",
+  "output": "{% macro peopleNameDetails(persons = []) %}\n  {% for person in persons %}\n\n    {{person.first_name}} {{person.last_name}}\n    {% if loop.last == false %}\n      ,\n    {% endif %}\n\n  {%- endfor -%}\n{%- endmacro %}\n\n\n\n\n{% macro contactDetails(persons = []) %}\n  {% for person in persons %}\n\n\n    {% if person.lessor_type == 'legalEntity' %}\n\n      Bezeichnung : {{person.legal_entity_name}}\n\n      <br/>\n      Juritische Person\n      <br/>\n      Vertreten durch : {{person.first_name}} {{person.last_name}}\n\n      {% if person.address -%}\n        <br/>\n        Hauptsitz : {{person.address.formatted_address}}\n      {%- endif %}\n\n    {% else %}\n\n      Name : {{person.first_name}} {{person.last_name}}\n      {% if person.address -%}\n        <br/>\n        Wohnsitz : {{person.address.formatted_address}}\n      {%- endif %}\n\n    {% endif %}\n\n    {% if person.email -%}\n      <br/>\n      E-mail : {{person.email}}\n    {%- endif %}\n\n    {% if person.tel -%}\n      <br/>\n      Tel. : {{person.tel}}\n    {%- endif %}\n\n    {% if loop.last == false %}\n      <br/><br/>und<br/><br/>\n    {% endif %}\n\n  {%- endfor -%}\n{%- endmacro %}\n\n<style>\n  .subheader{\n    margin: 0 auto;\n    width: 70%;\n    text-align: center;\n  }\n</style>\n\n<h1>Mieterhöhung für preisfreien Wohnraum</h1>\n\n<p>\n {% if mieter.length == 1 %}\n     Sehr geehrte(r) {{mieter[0].first_name}} {{mieter[0].last_name}}.\n {% else %}\nSehr geehrte {{peopleNameDetails(mieter)}}.  \n{% endif %}\n\n<br/><br/>\nGemäß §558 des Bürgerlichen Gesetzbuches kann der Vermieter die Zustimmung \nzu einer Erhöhung der Miete bis zur ortsüblichen Vergleichsmiete verlangen.\n<br/><br/>\nDas Mieterhöhungsverlangen kann frühestens ein Jahr nach der letzten Mieterhöhung geltend \ngemacht werden. \n<br/><br/>\nIhre Wohnung gelegen in {{wohnung.whg_adresse.formatted_address}} ist durch folgende Merkmale gekennzeichnet:\n<br/>\na) Wohnlage: \n{% if wohnung.wohnlage=='normal' -%}\nNormal\n{% else %}\nGut\n{% endif %}\n<br/>\nb) Baualter: {{wohnung.groesse}} Jahre\n <br/>\nc) Größe der Wohnung: {{wohnung.baualter}} m²\n\n<br/><br/>\nAusstattung und Beschaffenheit:\n<br/>\na)  \n{% if grosszug_badausstatt=='true' -%}\nNormale\n{% else %}\nGroßzügige\n{% endif %}\nBadausstattung\n<br/>\nb)  \n{% if ebk=='true' -%}\nEinbauküche ist vorhanden\n{% else %}\nKeine Einbauküche\n{% endif %}\n<br/>\nc)  \n{% if bodenbelag=='ja' -%}\nNormaler Bodenbelag\n{% else %}\nHochwertiger Bodenbelag\n{% endif %}\n{% if zusatz !=\"\" -%}\n<br/>\nd) Weitere Merkmale:\n{{zusatz}}\n{% endif %}\n<br/><br/>\nUnter Berücksichtung von Kappungsgrenze ergibt sich eine zulässige Nettomiete\nvon {{miete.nettomiete| currency(\"EUR\")}} mit folgenden Vorauszahlungen:\n<br/><br/>\n<table>\n  <tr>\n    <td>Betriebskosten:</td>\n    <td align=\"right\">{{miete.betr_kosten | currency(\"EUR\")}}</td>\n  </tr>\n  <tr>\n    <td>Heizkosen:</td>\n    <td align=\"right\">{{miete.heizkosten | currency(\"EUR\")}}</td>\n  </tr>\n  {% if miete.garage_vorhanden=='true' -%}\n  <tr>\n    <td>Garagen-/Stellplatzmiete:</td>\n    <td align=\"right\">{{miete.garagenmiete | currency(\"EUR\")}}</td>\n  </tr>\n  {% endif %}\n</table>\n<br/><br/>\nDie erhöhte Miete ist gemäß §558b Abs.1 BGB mit Beginn des dritten Kalendermonats zu zahlen, der auf \nden Zugang des Erhöhungsverlangens folgt, hiermit ab {{neuemiete_zum | date(\"L\")}}.\n<br/><br/>\nBitte geben Sie bis Ende des zweiten Kalendermonats nach dem Zugang dieses Erhöhungsverlangens, hiermit \nspätesten zum {{zustimmung_zum | date(\"L\")}}. \n<br/><br/>\n<b>Zustimmungserkläreung</b>\n<br/>\n {% if mieter.length == 1 %}\n Ich erkläre mich,\n {% else %}\nWir erklären uns, \n{% endif %}\nmit der Erhöhung der Nettomiete einverstanden.\n<br/><br/>\n {% if mieter.length == 1 %}\nUnterschrift:\n{% else %}\nUnterschriften:\n{% endif %}\n</p>\n\n\n\n",
+  "name": "Mieterhöhung für preisfreien Wohnraum",
+  "category": "Mietunterlagen",
+  "purpose": "Die Parteien eines Mietvertrages haben die jederzeit die Möglichkeit, die Miete gemäß § 557 Abs. 1 BGB einvernehmlich neu festzulegen. Auch die Vereinbarung Staffelmiete (§ 557a BGB) oder einer Indexmiete (§ 557b BGB) ist möglich. Wurde eine solche Vereinbarung nicht getroffen und eine Mieterhöhung auch nicht vertraglich ausgeschlossen, kann der Vermieter unter den Voraussetzungen der §§ 558 ff. BGB die Anpassung der Miete an die ortsübliche Vergleichsmiete verlangen."
+}

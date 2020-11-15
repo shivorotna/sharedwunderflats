@@ -1,0 +1,274 @@
+{
+  "wizard": [
+    {
+      "properties": [
+        {
+          "name": "tenants",
+          "label": "Mieter",
+          "type": "array",
+          "items": {
+            "type": "person",
+            "properties": [
+              {
+                "name": "first_name",
+                "label": "Vorname",
+                "type": "text",
+                "required": true,
+                "inline": true,
+                "warnings": [],
+                "errors": [],
+                "items": {
+                  "label": ""
+                },
+                "min": "",
+                "rows": 1
+              },
+              {
+                "name": "last_name",
+                "label": "Nachname",
+                "type": "text",
+                "required": true,
+                "inline": true,
+                "warnings": [],
+                "errors": []
+              },
+              {
+                "name": "company",
+                "label": "Unternehmen",
+                "type": "text",
+                "required": false,
+                "inline": true,
+                "warnings": [],
+                "errors": []
+              },
+              {
+                "name": "email",
+                "label": "E-Mail",
+                "type": "email",
+                "required": false,
+                "inline": true,
+                "warnings": [],
+                "errors": []
+              },
+              {
+                "name": "tel",
+                "label": "Telefon",
+                "type": "tel",
+                "required": false,
+                "inline": true,
+                "warnings": [],
+                "errors": []
+              },
+              {
+                "name": "address",
+                "label": "Adresse",
+                "type": "address",
+                "required": false,
+                "inline": false,
+                "warnings": [],
+                "errors": []
+              }
+            ],
+            "label": "Mieter"
+          },
+          "warnings": [],
+          "errors": [],
+          "min": "1"
+        },
+        {
+          "name": "maintenance",
+          "label": "Modernisierungsdurchführung",
+          "type": "object",
+          "properties": [
+            {
+              "name": "start",
+              "label": "Start",
+              "type": "date",
+              "required": true,
+              "inline": false,
+              "warnings": [
+                {
+                  "if": "maintenance.start < possible_maintanance_start",
+                  "text": "Die Modernisierungsmaßnahmen müssen spätestens 3 Monate vor dem Beginn angekündigt werden (bezogen auf heute ist der möglicher Start der Umbauten ${possible_maintanance_start | date})"
+                }
+              ],
+              "errors": [],
+              "collapsehint": true,
+              "hint": "Bei der erheblichen Einwirkung in die Mietsache sind Sie als Vermieter verpflichtet den Mieter in schriftlich zu informieren. Dazu müssen Sie die Modernisierungsmaßnahme spätestens 3 Monate vor dem Beginn ankündigen (§ 555c I BGB: Modernisierungsankündigung).",
+              "defaulttoday": false,
+              "if": "",
+              "unit": "",
+              "step": "",
+              "min": ""
+            },
+            {
+              "name": "end",
+              "label": "Ende",
+              "type": "date",
+              "required": true,
+              "inline": false,
+              "warnings": [],
+              "errors": [
+                {
+                  "if": "maintenance.end<=maintenance.start",
+                  "text": "Das Ende der Reparaturmaßnahmen muss nach dem Beginn  der Maßnahmen liegen"
+                }
+              ],
+              "hint": ""
+            }
+          ],
+          "warnings": [],
+          "errors": [],
+          "hint": ""
+        },
+        {
+          "name": "maintenance_description",
+          "label": "Art und voraussichtlicher Umfang der Maßnahme",
+          "type": "text",
+          "required": true,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "collapsehint": true,
+          "hint": "Die Angaben müssen so konkret sein, dass sich der Mieter ausreichend genaue Vorstellungen von der Situation während und nach der Durchführung der Maßnahme machen kann. Dazu müssen die Arbeiten detailliert beschrieben und nicht umschrieben werden.",
+          "rows": 3
+        }
+      ],
+      "name": "",
+      "label": "",
+      "hint": "",
+      "step": "",
+      "min": "",
+      "if": ""
+    },
+    {
+      "properties": [
+        {
+          "name": "planned_rentincrease",
+          "label": "Ist die Mieterhöhung nach dem Abschluss der Maßnahmen vorgsehen?",
+          "type": "choice",
+          "required": true,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "options": [
+            {
+              "label": "Ja",
+              "value": "true"
+            },
+            {
+              "label": "Nein",
+              "value": "false"
+            }
+          ],
+          "hint": "Bereits jetzt sollen Sie über die Größenordnung der zu erwartenden Mieterhöhung informieren. Die Mitteilungspflicht bezieht sich nur auf die zu erwartende Mieterhöhung wegen der Modernisierung, nicht auf eine eventuelle Erhöhung auf die ortsübliche Vergleichsmiete nach § 558 BGB. Sie müssen die zu erwartende Mieterhöhung mit einem bestimmten Geldbetrag bezeichnen.",
+          "unit": "",
+          "step": "",
+          "min": "",
+          "collapsehint": true,
+          "if": ""
+        },
+        {
+          "name": "rent_increase_delta",
+          "label": "Betrag der voraussichtlich zu erwartenden Mieterhöhung",
+          "type": "number",
+          "required": true,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "hint": "",
+          "unit": "€",
+          "step": "0.01",
+          "min": "1",
+          "default": "",
+          "if": "planned_rentincrease=='true'"
+        },
+        {
+          "name": "planned_op_expense_increase",
+          "label": "Erhöhen sich durch die Modernisierungsmaßnahmen die Nebenkosten oder werden neue Nebenkosten gefordert?",
+          "type": "choice",
+          "required": true,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "options": [
+            {
+              "label": "Ja",
+              "value": "true"
+            },
+            {
+              "label": "Nein",
+              "value": "false"
+            }
+          ],
+          "collapsehint": true,
+          "hint": "Den genauen Erhöhungsbetrag brauchen Sie nicht zu beziffern.    Soweit der Mieter mit den Energielieferanten eigene Verträge abgeschlossen hat,\n müssen Sie über eine mögliche Veränderung der Kosten für Strom und Gas nicht informieren. Nach § 556a BGB können Sie den Abrechnungsmaßstab für Nebenkosten ändern."
+        },
+        {
+          "name": "operatig_expense",
+          "label": "Die voraussichtlichen künftigen Betriebskosten",
+          "type": "number",
+          "required": true,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "hint": "",
+          "if": "planned_op_expense_increase=='true'",
+          "step": "0.01",
+          "min": "1",
+          "unit": ""
+        }
+      ],
+      "name": "",
+      "label": "",
+      "hint": ""
+    },
+    {
+      "properties": [
+        {
+          "name": "energy_improvement",
+          "label": "Gilt die geplante Maßnahme als eine energetische Sanierung?",
+          "type": "choice",
+          "required": true,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "options": [
+            {
+              "label": "Ja",
+              "value": "true"
+            },
+            {
+              "label": "Nein",
+              "value": "false"
+            }
+          ],
+          "collapsehint": true,
+          "hint": "Im Fall der energetischen Sanierung müssen Sie darlegen, inwieweit die Maßnahme zu einer Energieeinsparung geführt. Dazu können Siehinsichtlich der energetischen Qualität von Bauteilen auf allgemein anerkannte Pauschalwerte Bezug nehmen. (Beispiel: \"Naturgemäß wird diese Modernisierungsmaßnahme zu einer nachhaltigen Energieeinsparung in Ihrer Wohnung führen. Ausgehend von den Wärmeenergiekoeffiziente lässt sich eine Heizenergieeinsparung von ca. 50 % begründen\")",
+          "if": "",
+          "step": "",
+          "min": ""
+        },
+        {
+          "name": "energy_improvement_description",
+          "label": "Beschreiben Sie, inwieweit die Maßnahme zu einer Energieeinsparung führt.",
+          "type": "text",
+          "required": false,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "hint": "",
+          "if": "energy_improvement=='true'",
+          "step": "",
+          "min": "",
+          "rows": 3
+        }
+      ]
+    }
+  ],
+  "script": "this.possible_maintanance_start = null;\n\nvar _setPossibleMaintananceStart=()=>{\n  if(this.maintanancestart == null)\n  {\n    return;\n  }\n  const today = moment().format(\"YYYY-MM-DD\")+'T00:00:00.000Z';\n\n  let earliestStart = moment();\n  let periodToInformInMonths = 3;\n\n  earliestStart.add(periodToInformInMonths, 'months');\n  this.possible_maintanance_start = earliestStart.format(\"YYYY-MM-DD\");\n}\n\nobserve('maintanancestart', () => {\n  if(this.maintanancestart != null){\n\t\t_setPossibleMaintananceStart()    \n  }\n})\n\n",
+  "output": "<style>\n  .subheader{\n    margin: 0 auto;\n    width: 70%;\n    text-align: center;\n  }\n</style>\n\n<h1>Ankündigung von Modernisierurngsmaßnahmen</h1>\n\n<p>Liebe Mieter.</p>\n<p>\nEs wird beabsichtigt Modernisierungsmaßnahmen durchzuführen, die mit Einwirkungen auf die von Ihnen\ngemieteten Räume verbunden sind.\n</p>\n<p>\nIm Einzelnen handelt es sich um folgende Maßnahmen: {{maintenance_description}}\n</p>\n<p>\nMit den Arbeiten wird voraussichtlich am {{maintenance.start}} begonnen. Die Moderniesierungsmaßnahmen\nwerden voraussichtlich am {{maintenance.end}} beendet.\n</p>\n\n<p>\n{% if planned_rentincrease=='true' %}\nNach der Modernisierung werden wir eine Mieterhöhung geltend machen. Diese dürfte sich nach einer vorläufigen\nBerechnung voraussichtlich auf ca. {{rent_increase_delta | currency(\"EUR\")}} monatlich belaufen. Den genauen Betrag teilen wir Ihnen noch\ngesondert mit.\n{% else %}\nEine Mieterhöhung ist mit der Maßnahme für Sie nicht verbunden.\n{% endif %}\n</p>\n<p>\n{% if planned_op_expense_increase=='true' %}\nDie zukünftigen Betriebskosten werden voraussichtlich auf {{operatig_expense | currency(\"EUR\")}} monatlich gesetzt.\n{% endif %}\n</p>\n<p>\n{% if energy_improvement=='true' %}\nDie geplanten Modernisierungsmaßnahmen führen wie folgt zu einer Energieeinsparung: {{energy_improvement_description}}.\n{% endif %}\n</p>\n<p>\nSie sind verpflichtet, diese Maßnahme zu dulden. Falls die Maßnahme\n{% if planned_rentincrease=='true' %}\noder die Mieterhöhung\n{% endif %} für Sie selbst, Ihre Familie oder einen Haushaltsangehörigen eine Härte bedeuten würde,\ndie unter Berücksichtigung unserer\nInteressen und derjenigen anderer Mieter im Haus sowie durch Belange der Energieeinsparung und des\nKlimaschutzes nicht gerechtfertigt werden kann, können Sie sich auf solche Härtegründe berufen.\nDiese müssen Sie uns bis zum Ablauf des Monats, der auf den Zugang dieser Ankündigung folgt,\nin Textform mitteilen (§§ 555c II, 555d II, III BGB).\n</p>\n<p>\nWir werden bemüht sein, die Störungen, die mit der Durchführung der Maßnahmen verbunden sind,\nso gering wie möglich zu halten. Die genauen Termine werden Ihnen, sobald sie bekannt sind,\nmitgeteilt werden.\n</p>\n",
+  "name": "Ankündigung von Modernisierungsmaßnahmen",
+  "category": "Mietunterlagen",
+  "purpose": "Modernisierungsmaßnahmen verbessern die Wohnqualität und die Werthaltigkeit der Immobilie. Sie gehen über die reinen Erhaltungsmaßnahmen hinaus. Da die damit einhergehenden Baumaßnahmen den Mieter regelmäßig beeinträchtigen, verpflichtet das Gesetz den Vermieter, die Modernisierungsmaßnahme spätestens 3 Monate vor dem Beginn anzukündigen."
+}

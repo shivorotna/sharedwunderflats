@@ -1,0 +1,190 @@
+{
+  "wizard": [
+    {
+      "properties": [
+        {
+          "name": "tenants",
+          "label": "Mieter",
+          "type": "array",
+          "items": {
+            "type": "person",
+            "properties": [
+              {
+                "name": "first_name",
+                "label": "Vorname",
+                "type": "text",
+                "required": true,
+                "inline": true,
+                "warnings": [],
+                "errors": []
+              },
+              {
+                "name": "last_name",
+                "label": "Nachname",
+                "type": "text",
+                "required": true,
+                "inline": true,
+                "warnings": [],
+                "errors": []
+              },
+              {
+                "name": "company",
+                "label": "Unternehmen",
+                "type": "text",
+                "required": false,
+                "inline": true,
+                "warnings": [],
+                "errors": [],
+                "rows": 1
+              },
+              {
+                "name": "email",
+                "label": "E-Mail",
+                "type": "email",
+                "required": false,
+                "inline": true,
+                "warnings": [],
+                "errors": []
+              },
+              {
+                "name": "tel",
+                "label": "Telefon",
+                "type": "tel",
+                "required": false,
+                "inline": true,
+                "warnings": [],
+                "errors": []
+              },
+              {
+                "name": "address",
+                "label": "Adresse",
+                "type": "address",
+                "required": false,
+                "inline": false,
+                "warnings": [],
+                "errors": []
+              }
+            ],
+            "label": "Mieter"
+          },
+          "warnings": [],
+          "errors": [],
+          "min": "1"
+        }
+      ],
+      "name": "",
+      "label": ""
+    },
+    {
+      "properties": [
+        {
+          "name": "rent_object_address",
+          "label": "Adresse des Mietobjektes",
+          "type": "address",
+          "required": true,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "step": "",
+          "min": "",
+          "max": "",
+          "default": ""
+        },
+        {
+          "name": "building_type",
+          "label": "Typ der Unterkunft",
+          "type": "choice",
+          "required": true,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "options": [
+            {
+              "label": "Wohnung",
+              "value": "flat"
+            },
+            {
+              "label": "Haus",
+              "value": "house"
+            }
+          ]
+        },
+        {
+          "name": "inspection_date",
+          "label": "Datum der geplanten Besichtigung",
+          "type": "date",
+          "required": true,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "defaulttoday": false
+        },
+        {
+          "name": "inspection_time",
+          "label": "Uhrzeit der Besichtigung",
+          "type": "object",
+          "properties": [
+            {
+              "name": "inspection_hour",
+              "label": "Std",
+              "type": "number",
+              "required": true,
+              "inline": true,
+              "warnings": [],
+              "errors": [],
+              "step": "1",
+              "min": "0",
+              "max": "23",
+              "default": "0"
+            },
+            {
+              "name": "inspection_mins",
+              "label": "Min",
+              "type": "number",
+              "required": true,
+              "inline": true,
+              "warnings": [],
+              "errors": [],
+              "step": "1",
+              "min": "00",
+              "max": "59",
+              "default": "00"
+            }
+          ],
+          "warnings": [],
+          "errors": [],
+          "inline": true,
+          "step": "",
+          "min": "",
+          "max": "",
+          "default": ""
+        },
+        {
+          "name": "inspection_reason",
+          "label": "Grund für die Besichtigung",
+          "type": "text",
+          "required": false,
+          "inline": true,
+          "warnings": [],
+          "errors": [],
+          "rows": 3,
+          "default": "",
+          "step": "",
+          "min": "",
+          "max": ""
+        }
+      ],
+      "name": "",
+      "label": "",
+      "step": "",
+      "min": "",
+      "max": "",
+      "default": ""
+    }
+  ],
+  "script": "",
+  "output": "{% macro peopleNameDetails(persons = []) %}\n  {% for person in persons %}\n\n    {{person.first_name}} {{person.last_name}}\n    {% if loop.last == false %}\n      ,\n    {% endif %}\n\n  {%- endfor -%}\n{%- endmacro %}\n\n\n\n\n{% macro contactDetails(persons = []) %}\n  {% for person in persons %}\n\n\n    {% if person.lessor_type == 'legalEntity' %}\n\n      Bezeichnung : {{person.legal_entity_name}}\n\n      <br/>\n      Juritische Person\n      <br/>\n      Vertreten durch : {{person.first_name}} {{person.last_name}}\n\n      {% if person.address -%}\n        <br/>\n        Hauptsitz : {{person.address.formatted_address}}\n      {%- endif %}\n\n    {% else %}\n\n      Name : {{person.first_name}} {{person.last_name}}\n      {% if person.address -%}\n        <br/>\n        Wohnsitz : {{person.address.formatted_address}}\n      {%- endif %}\n\n    {% endif %}\n\n    {% if person.email -%}\n      <br/>\n      E-mail : {{person.email}}\n    {%- endif %}\n\n    {% if person.tel -%}\n      <br/>\n      Tel. : {{person.tel}}\n    {%- endif %}\n\n    {% if loop.last == false %}\n      <br/><br/>und<br/><br/>\n    {% endif %}\n\n  {%- endfor -%}\n{%- endmacro %}\n\n<style>\n  .subheader{\n    margin: 0 auto;\n    width: 70%;\n    text-align: center;\n  }\n</style>\n\n<h1>Ankündigung einer Besichtigung</h1>\n\n<p>\n {% if tenants.length == 1 %}\n     Sehr geehrte(r) {{tenants[0].first_name}} {{tenants[0].last_name}}.\n {% else %}\nSehr geehrte {{peopleNameDetails(tenants)}}.  \n{% endif %}\n\n<br/><br/>\nHiermit werden Sie über die geplante\n{% if building_type == 'flat'%}\nWohnungsbesichtigung\n{% else %}\nHausbesichtigung\n{% endif %} am {{inspection_date | date(\"LL\")}} um {{inspection_time.inspection_hour}}:{{inspection_time.inspection_mins}}  informiert. Sie werden hiermit gebeten, das Betreten und Besichtigen der\nMieträume zu gestatten. Dieser Anspruch stützt sich auf § 809 BGB und Ihren Mietvertrag,\nin dem Vermieter das Betreten der Mieträume gestattet werden muss, wenn der Vermieter einen Anspruch in\nAnsehung der Mietsache hat oder sich Gewissheit verschaffen will, ob ihm ein solcher Anspruch zusteht und die\nBesichtigung aus diesem Grunde von Interesse ist. Die Ausübung des Besichtigungsrechtes stützt sich in\ndiesem Fall auf Folgendes: {{inspection_reason}}.\n</p>\n<p>\nSollten Sie zu diesem Termin verhindert sein, so\nbitten wir um rechtzeitige Benachrichtigung unter Nennung eines Ersatztermins. Wird die Besichtigung\n{% if building_type == 'flat'%}\nder Wohnung\n{% else %}\ndes Hauses\n{% endif %} verweigert, so wird die Klage ohne weitere Ankündigung erhoben.\n</p>\n",
+  "name": "Ankündigung einer Wohnungs- oder Hausbesichtigung",
+  "purpose": "Vermieter darf das Mietobjekt mit Begründung besichtigen. Die Besichtigung muss abhängig von der Situation des Mieters fristgerecht angekündigt werden.",
+  "category": "Mietunterlagen"
+}

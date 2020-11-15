@@ -1,2 +1,0 @@
-# sharedwunderflats
-DocuSelf template repository

@@ -1,0 +1,143 @@
+{
+  "wizard": [
+    {
+      "properties": [
+        {
+          "name": "mieter",
+          "label": "Meldepflichtige Person",
+          "type": "person",
+          "properties": [
+            {
+              "name": "first_name",
+              "label": "Vorname",
+              "type": "text",
+              "required": true,
+              "inline": true,
+              "warnings": [],
+              "errors": []
+            },
+            {
+              "name": "last_name",
+              "label": "Nachname",
+              "type": "text",
+              "required": true,
+              "inline": true,
+              "warnings": [],
+              "errors": []
+            },
+            {
+              "name": "company",
+              "label": "Unternehmen",
+              "type": "text",
+              "required": false,
+              "inline": true,
+              "warnings": [],
+              "errors": []
+            },
+            {
+              "name": "email",
+              "label": "E-Mail",
+              "type": "email",
+              "required": false,
+              "inline": true,
+              "warnings": [],
+              "errors": []
+            },
+            {
+              "name": "tel",
+              "label": "Telefon",
+              "type": "tel",
+              "required": false,
+              "inline": true,
+              "warnings": [],
+              "errors": []
+            },
+            {
+              "name": "address",
+              "label": "Adresse",
+              "type": "address",
+              "required": false,
+              "inline": false,
+              "warnings": [],
+              "errors": []
+            }
+          ],
+          "warnings": [],
+          "errors": []
+        },
+        {
+          "name": "grund",
+          "label": "Grund der Vermieterbestätigung",
+          "type": "choice",
+          "required": true,
+          "inline": false,
+          "warnings": [],
+          "errors": [],
+          "options": [
+            {
+              "label": "Einzug",
+              "value": "einzug"
+            },
+            {
+              "label": "Auszug",
+              "value": "Auszug"
+            }
+          ],
+          "collapsehint": true,
+          "hint": "Definieren Sie, ob die meldepflichtigen Personen ein- oder ausziehen."
+        },
+        {
+          "name": "zum_datum",
+          "label": "Zum",
+          "type": "date",
+          "required": true,
+          "inline": false,
+          "warnings": [],
+          "errors": []
+        }
+      ],
+      "name": "",
+      "label": "",
+      "hint": ""
+    },
+    {
+      "properties": [
+        {
+          "name": "wohnung",
+          "label": "Wohnung",
+          "type": "object",
+          "properties": [
+            {
+              "name": "adresse",
+              "label": "Wohnungsadresse",
+              "type": "address",
+              "required": true,
+              "inline": false,
+              "warnings": [],
+              "errors": []
+            },
+            {
+              "name": "obergeschoss",
+              "label": "OG",
+              "type": "number",
+              "required": false,
+              "inline": false,
+              "warnings": [],
+              "errors": [],
+              "unit": "",
+              "step": "1",
+              "min": "0"
+            }
+          ],
+          "warnings": [],
+          "errors": []
+        }
+      ]
+    }
+  ],
+  "script": "",
+  "output": "\n<p>\nHiermit bestätige ich den\n{% if grund=='einzug' %}\nEinzug\n{% else %}\nAuszug\n{% endif %}\nder Meldepflichtigen Person zum {{zum_datum}} unter der Adresse {{wohnung.whg_adresse.formatted_address}}.\n</p>\n<p>\nName des Mieters bzw. der Mieterin:\n{{mieter.first_name}} {{mieter.last_name}}.\n</p>\n<br/><br/>\n<p>\nMit freundlichen Grüßen,\n</p>",
+  "name": "Vermieterbestätigung",
+  "category": "Mietunterlagen",
+  "purpose": "Vermieterbescheinigung gemäß § 19 Absatz 3 Bundesmeldegesetz – zur Vorlage bei der Meldebehörde"
+}
