@@ -1,6 +1,6 @@
 {
   "is_downloadable_as_pdf": true,
-  "is_esignable": false,
+  "is_esignable": true,
   "wizard": [
     {
       "properties": [
@@ -102,7 +102,11 @@
         }
       ],
       "name": "",
-      "label": ""
+      "label": "",
+      "unit": "",
+      "step": "",
+      "min": "",
+      "max": ""
     },
     {
       "properties": [
@@ -1204,7 +1208,7 @@
               "max": "999999"
             },
             {
-              "name": "warm_water_reading",
+              "name": "hot_water_reading",
               "label": "Zählerstand (Warmwasser)",
               "type": "number",
               "required": false,
